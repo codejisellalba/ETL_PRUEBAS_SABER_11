@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="STAGE_UPTC"
+  DTS:DTSID="{00B4DFE2-2EED-4993-AD87-4CE661A08CD3}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=DESKTOP-TM2C912\SQLSERVER;Initial Catalog=STAGE_UPTC;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{00B4DFE2-2EED-4993-AD87-4CE661A08CD3}DESKTOP-TM2C912\SQLSERVER.STAGE_UPTC;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

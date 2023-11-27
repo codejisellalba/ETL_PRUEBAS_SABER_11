@@ -1,0 +1,832 @@
+{
+  "name": "RESULTADOS_SABER11_TABULAR",
+  "compatibilityLevel": 1400,
+  "model": {
+    "culture": "en-US",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SQL/DESKTOP-TM2C912\\SQLSERVER;DWH_UPTC",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "DESKTOP-TM2C912\\SQLSERVER",
+            "database": "DWH_UPTC"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "credential": {
+          "AuthenticationKind": "UsernamePassword",
+          "kind": "SQL",
+          "path": "desktop-tm2c912\\sqlserver;DWH_UPTC",
+          "Username": "UPTC",
+          "EncryptConnection": false
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "DIM_COLEGIO",
+        "columns": [
+          {
+            "name": "SK_DIM_COLEGIO",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "SK_DIM_COLEGIO"
+          },
+          {
+            "name": "STR_AREA_UBICACION",
+            "dataType": "string",
+            "sourceColumn": "STR_AREA_UBICACION"
+          },
+          {
+            "name": "STR_ES_BILINGUE",
+            "dataType": "string",
+            "sourceColumn": "STR_ES_BILINGUE"
+          },
+          {
+            "name": "STR_CARACTER",
+            "dataType": "string",
+            "sourceColumn": "STR_CARACTER"
+          },
+          {
+            "name": "INT_CODIGO_DEPTO",
+            "dataType": "int64",
+            "sourceColumn": "INT_CODIGO_DEPTO"
+          },
+          {
+            "name": "INT_CODIGO_MCPIO",
+            "dataType": "int64",
+            "sourceColumn": "INT_CODIGO_MCPIO"
+          },
+          {
+            "name": "STR_DEPTO_UBICACION",
+            "dataType": "string",
+            "sourceColumn": "STR_DEPTO_UBICACION"
+          },
+          {
+            "name": "STR_GENERO",
+            "dataType": "string",
+            "sourceColumn": "STR_GENERO"
+          },
+          {
+            "name": "STR_JORNADA",
+            "dataType": "string",
+            "sourceColumn": "STR_JORNADA"
+          },
+          {
+            "name": "STR_MCPIO_UBICACION",
+            "dataType": "string",
+            "sourceColumn": "STR_MCPIO_UBICACION"
+          },
+          {
+            "name": "STR_NATURALEZA",
+            "dataType": "string",
+            "sourceColumn": "STR_NATURALEZA"
+          },
+          {
+            "name": "STR_CALENDARIO",
+            "dataType": "string",
+            "sourceColumn": "STR_CALENDARIO"
+          },
+          {
+            "name": "DT_FECHA_ACTUALIZACION",
+            "dataType": "dateTime",
+            "sourceColumn": "DT_FECHA_ACTUALIZACION"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/DESKTOP-TM2C912\\SQLSERVER;DWH_UPTC\",",
+                "    dbo_DIM_COLEGIO = Source{[Schema=\"dbo\",Item=\"DIM_COLEGIO\"]}[Data]",
+                "in",
+                "    dbo_DIM_COLEGIO"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DIM_ESTUDIANTE",
+        "columns": [
+          {
+            "name": "SK_DIM_ESTUDIANTE",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "SK_DIM_ESTUDIANTE"
+          },
+          {
+            "name": "STR_TIPO_DOCUMENTO",
+            "dataType": "string",
+            "sourceColumn": "STR_TIPO_DOCUMENTO"
+          },
+          {
+            "name": "INT_COD_DEPTO_PRESENTACION",
+            "dataType": "int64",
+            "sourceColumn": "INT_COD_DEPTO_PRESENTACION"
+          },
+          {
+            "name": "INT_COD_MCPIO_PRESENTACION",
+            "dataType": "int64",
+            "sourceColumn": "INT_COD_MCPIO_PRESENTACION"
+          },
+          {
+            "name": "COD_INT_RESIDE_DEPTO",
+            "dataType": "int64",
+            "sourceColumn": "COD_INT_RESIDE_DEPTO"
+          },
+          {
+            "name": "INT_COD_RESIDE_MCPIO",
+            "dataType": "int64",
+            "sourceColumn": "INT_COD_RESIDE_MCPIO"
+          },
+          {
+            "name": "STR_DEPTO_PRESENTACION",
+            "dataType": "string",
+            "sourceColumn": "STR_DEPTO_PRESENTACION"
+          },
+          {
+            "name": "STR_DEPTO_RESIDE",
+            "dataType": "string",
+            "sourceColumn": "STR_DEPTO_RESIDE"
+          },
+          {
+            "name": "STR_ES_ESTUDIANTE",
+            "dataType": "string",
+            "sourceColumn": "STR_ES_ESTUDIANTE"
+          },
+          {
+            "name": "STR_FECHA_NACIMIENTO",
+            "dataType": "dateTime",
+            "sourceColumn": "STR_FECHA_NACIMIENTO"
+          },
+          {
+            "name": "STR_GENERO",
+            "dataType": "string",
+            "sourceColumn": "STR_GENERO"
+          },
+          {
+            "name": "STR_MCPIO_PRESENTACION",
+            "dataType": "string",
+            "sourceColumn": "STR_MCPIO_PRESENTACION"
+          },
+          {
+            "name": "STR_MCPIO_RESIDE",
+            "dataType": "string",
+            "sourceColumn": "STR_MCPIO_RESIDE"
+          },
+          {
+            "name": "STR_NACIONALIDAD",
+            "dataType": "string",
+            "sourceColumn": "STR_NACIONALIDAD"
+          },
+          {
+            "name": "STR_PAIS_RESIDE",
+            "dataType": "string",
+            "sourceColumn": "STR_PAIS_RESIDE"
+          },
+          {
+            "name": "STR_ES_PRIVADO_LIBERTAD",
+            "dataType": "string",
+            "sourceColumn": "STR_ES_PRIVADO_LIBERTAD"
+          },
+          {
+            "name": "DT_FECHA_ACTUALIZACION",
+            "dataType": "dateTime",
+            "sourceColumn": "DT_FECHA_ACTUALIZACION"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/DESKTOP-TM2C912\\SQLSERVER;DWH_UPTC\",",
+                "    dbo_DIM_ESTUDIANTE = Source{[Schema=\"dbo\",Item=\"DIM_ESTUDIANTE\"]}[Data]",
+                "in",
+                "    dbo_DIM_ESTUDIANTE"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DIM_FACTORES_SOCIECONOMICOS",
+        "columns": [
+          {
+            "name": "SK_DIM_FACTORES",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "SK_DIM_FACTORES"
+          },
+          {
+            "name": "CUARTOS_HOGAR",
+            "dataType": "string",
+            "sourceColumn": "CUARTOS_HOGAR"
+          },
+          {
+            "name": "EDUCACION_MADRE",
+            "dataType": "string",
+            "sourceColumn": "EDUCACION_MADRE"
+          },
+          {
+            "name": "EDUCACION_PADRE",
+            "dataType": "string",
+            "sourceColumn": "EDUCACION_PADRE"
+          },
+          {
+            "name": "ESTRATO_VIVIENDA",
+            "dataType": "string",
+            "sourceColumn": "ESTRATO_VIVIENDA"
+          },
+          {
+            "name": "PERSONAS_HOGAR",
+            "dataType": "string",
+            "sourceColumn": "PERSONAS_HOGAR"
+          },
+          {
+            "name": "FAMI_TIENE_AUTOMOVIL",
+            "dataType": "string",
+            "sourceColumn": "FAMI_TIENE_AUTOMOVIL"
+          },
+          {
+            "name": "FAMI_TIENE_COMPUTADOR",
+            "dataType": "string",
+            "sourceColumn": "FAMI_TIENE_COMPUTADOR"
+          },
+          {
+            "name": "FAMI_TIENE_INTERNET",
+            "dataType": "string",
+            "sourceColumn": "FAMI_TIENE_INTERNET"
+          },
+          {
+            "name": "FAMI_TIENE_LAVADORA",
+            "dataType": "string",
+            "sourceColumn": "FAMI_TIENE_LAVADORA"
+          },
+          {
+            "name": "DT_FECHA_ACTUALIZACION",
+            "dataType": "dateTime",
+            "sourceColumn": "DT_FECHA_ACTUALIZACION"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/DESKTOP-TM2C912\\SQLSERVER;DWH_UPTC\",",
+                "    dbo_DIM_FACTORES_SOCIECONOMICOS = Source{[Schema=\"dbo\",Item=\"DIM_FACTORES_SOCIECONOMICOS\"]}[Data]",
+                "in",
+                "    dbo_DIM_FACTORES_SOCIECONOMICOS"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DIM_RESULTADOS",
+        "columns": [
+          {
+            "name": "SK_DIM_RESULTADOS",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "SK_DIM_RESULTADOS"
+          },
+          {
+            "name": "DESEMPENO_INGLES",
+            "dataType": "string",
+            "sourceColumn": "DESEMPENO_INGLES"
+          },
+          {
+            "name": "PUNT_INGLES",
+            "dataType": "int64",
+            "sourceColumn": "PUNT_INGLES"
+          },
+          {
+            "name": "PUNT_MATEMATICAS",
+            "dataType": "int64",
+            "sourceColumn": "PUNT_MATEMATICAS"
+          },
+          {
+            "name": "PUNT_SOCIALES_CIUDADAS",
+            "dataType": "int64",
+            "sourceColumn": "PUNT_SOCIALES_CIUDADAS"
+          },
+          {
+            "name": "PUNT_C_NATURALES",
+            "dataType": "int64",
+            "sourceColumn": "PUNT_C_NATURALES"
+          },
+          {
+            "name": "PUNT_LECTURA_CRITICA",
+            "dataType": "int64",
+            "sourceColumn": "PUNT_LECTURA_CRITICA"
+          },
+          {
+            "name": "INT_PUNT_GLOBAL",
+            "dataType": "int64",
+            "sourceColumn": "INT_PUNT_GLOBAL"
+          },
+          {
+            "name": "DT_FECHA_ACTUALIZACION",
+            "dataType": "dateTime",
+            "sourceColumn": "DT_FECHA_ACTUALIZACION"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/DESKTOP-TM2C912\\SQLSERVER;DWH_UPTC\",",
+                "    dbo_DIM_RESULTADOS = Source{[Schema=\"dbo\",Item=\"DIM_RESULTADOS\"]}[Data]",
+                "in",
+                "    dbo_DIM_RESULTADOS"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DIM_TIEMPO",
+        "columns": [
+          {
+            "name": "SK_DIM_TIEMPO",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "SK_DIM_TIEMPO"
+          },
+          {
+            "name": "ANIO",
+            "dataType": "int64",
+            "sourceColumn": "ANIO"
+          },
+          {
+            "name": "PERIODO",
+            "dataType": "int64",
+            "sourceColumn": "PERIODO"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/DESKTOP-TM2C912\\SQLSERVER;DWH_UPTC\",",
+                "    dbo_DIM_TIEMPO = Source{[Schema=\"dbo\",Item=\"DIM_TIEMPO\"]}[Data]",
+                "in",
+                "    dbo_DIM_TIEMPO"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "FACT_RESULTADOS_SABER_11",
+        "columns": [
+          {
+            "name": "SK_FACT_RESULTADOS",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "SK_FACT_RESULTADOS"
+          },
+          {
+            "name": "SK_DIM_FACTORES_SOCIOECONOMICOS",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "SK_DIM_FACTORES_SOCIOECONOMICOS"
+          },
+          {
+            "name": "SK_DIM_TIEMPO",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "SK_DIM_TIEMPO"
+          },
+          {
+            "name": "SK_DIM_ESTUDIANTE",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "SK_DIM_ESTUDIANTE"
+          },
+          {
+            "name": "SK_DIM_COLEGIO",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "SK_DIM_COLEGIO"
+          },
+          {
+            "name": "SK_DIM_RESULTADOS",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "SK_DIM_RESULTADOS"
+          },
+          {
+            "name": "DT_FECHA_ACTUALIZACION",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "DT_FECHA_ACTUALIZACION"
+          },
+          {
+            "name": "NUM_CANTIDAD",
+            "dataType": "int64",
+            "sourceColumn": "NUM_CANTIDAD"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/DESKTOP-TM2C912\\SQLSERVER;DWH_UPTC\",",
+                "    dbo_FACT_RESULTADOS_SABER_11 = Source{[Schema=\"dbo\",Item=\"FACT_RESULTADOS_SABER_11\"]}[Data]",
+                "in",
+                "    dbo_FACT_RESULTADOS_SABER_11"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "CANTIDAD_CC",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_ESTUDIANTE,DIM_ESTUDIANTE[STR_TIPO_DOCUMENTO]=\"CC\"))"
+          },
+          {
+            "name": "CANTIDAD_TI",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_ESTUDIANTE,DIM_ESTUDIANTE[STR_TIPO_DOCUMENTO]=\"TI\"))"
+          },
+          {
+            "name": "Sum of NUM_CANTIDAD",
+            "expression": "SUM([NUM_CANTIDAD])"
+          },
+          {
+            "name": "CANTIDAD_1_MATEMATICAS",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[PUNT_MATEMATICAS]=1))",
+            "displayFolder": "CANTIDADES_MATEMATICAS"
+          },
+          {
+            "name": "CANTIDAD_2_MATEMATICAS",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[PUNT_MATEMATICAS]=2))",
+            "displayFolder": "CANTIDADES_MATEMATICAS"
+          },
+          {
+            "name": "CANTIDAD_3_MATEMATICAS",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[PUNT_MATEMATICAS]=3))",
+            "displayFolder": "CANTIDADES_MATEMATICAS"
+          },
+          {
+            "name": "CANTIDAD_4_MATEMATICAS",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[PUNT_MATEMATICAS]=4))",
+            "displayFolder": "CANTIDADES_MATEMATICAS"
+          },
+          {
+            "name": "CANTIDAD_1_SOCIALES_CIUDADAS",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[PUNT_SOCIALES_CIUDADAS]=1))",
+            "displayFolder": "CANTIDADES_SOCIALES_CIUDADAS"
+          },
+          {
+            "name": "CANTIDAD_3_SOCIALES_CIUDADAS",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[PUNT_SOCIALES_CIUDADAS]=3))",
+            "displayFolder": "CANTIDADES_SOCIALES_CIUDADAS"
+          },
+          {
+            "name": "CANTIDAD_2_SOCIALES_CIUDADAS",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[PUNT_SOCIALES_CIUDADAS]=2))",
+            "displayFolder": "CANTIDADES_SOCIALES_CIUDADAS"
+          },
+          {
+            "name": "CANTIDAD_4_SOCIALES_CIUDADAS",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[PUNT_SOCIALES_CIUDADAS]=4))",
+            "displayFolder": "CANTIDADES_SOCIALES_CIUDADAS"
+          },
+          {
+            "name": "CANTIDAD_1_C_NATURALES",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[PUNT_C_NATURALES]=1))",
+            "displayFolder": "CANTIDADES_C_NATURALES"
+          },
+          {
+            "name": "CANTIDAD_2_C_NATURALES",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[PUNT_C_NATURALES]=2))",
+            "displayFolder": "CANTIDADES_C_NATURALES"
+          },
+          {
+            "name": "CANTIDAD_3_C_NATURALES",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[PUNT_C_NATURALES]=3))",
+            "displayFolder": "CANTIDADES_C_NATURALES"
+          },
+          {
+            "name": "CANTIDAD_4_C_NATURALES",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[PUNT_C_NATURALES]=4))",
+            "displayFolder": "CANTIDADES_C_NATURALES"
+          },
+          {
+            "name": "CANTIDAD_1_LECTURA_CRITICA",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[PUNT_LECTURA_CRITICA]=1))",
+            "displayFolder": "CANTIDADES_LECTURA_CRITICA"
+          },
+          {
+            "name": "CANTIDAD_2_LECTURA_CRITICA",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[PUNT_LECTURA_CRITICA]=2))",
+            "displayFolder": "CANTIDADES_LECTURA_CRITICA"
+          },
+          {
+            "name": "CANTIDAD_3_LECTURA_CRITICA",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[PUNT_LECTURA_CRITICA]=3))",
+            "displayFolder": "CANTIDADES_LECTURA_CRITICA"
+          },
+          {
+            "name": "CANTIDAD_4_LECTURA_CRITICA",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[PUNT_LECTURA_CRITICA]=4))",
+            "displayFolder": "CANTIDADES_LECTURA_CRITICA"
+          },
+          {
+            "name": "CANTIDAD_DESEMPENO_INGLES_A_MENOS",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[DESEMPENO_INGLES]=\"A-\"))",
+            "displayFolder": "CANTIDADES_DESEMPENO_INGLES"
+          },
+          {
+            "name": "CANTIDAD_DESEMPENO_INGLES_A_UNO",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[DESEMPENO_INGLES]=\"A1\"))",
+            "displayFolder": "CANTIDADES_DESEMPENO_INGLES"
+          },
+          {
+            "name": "CANTIDAD_DESEMPENO_INGLES_A_DOS",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[DESEMPENO_INGLES]=\"A2\"))",
+            "displayFolder": "CANTIDADES_DESEMPENO_INGLES"
+          },
+          {
+            "name": "CANTIDAD_DESEMPENO_INGLES_B_1",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[DESEMPENO_INGLES]=\"B1\"))",
+            "displayFolder": "CANTIDADES_DESEMPENO_INGLES"
+          },
+          {
+            "name": "CANTIDAD_DESEMPENO_INGLES_B_MAS",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[DESEMPENO_INGLES]=\"B+\"))",
+            "displayFolder": "CANTIDADES_DESEMPENO_INGLES"
+          },
+          {
+            "name": "CANTIDAD_COL_UBICA_URBANO",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_AREA_UBICACION]=\"RURAL\"))",
+            "displayFolder": "CANTIDADES_COL_UBICA"
+          },
+          {
+            "name": "CANTIDAD_COL_UBICA_RURAL",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_AREA_UBICACION]=\"URBANO\"))",
+            "displayFolder": "CANTIDADES_COL_UBICA"
+          },
+          {
+            "name": "CANTIDAD_COL_GEN_FEMENINO",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_GENERO]=\"FEMENINO\"))",
+            "displayFolder": "CANTIDADES_COL_GENERO"
+          },
+          {
+            "name": "CANTIDAD_COL_GEN_MASCULINO",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_GENERO]=\"MASCULINO\"))",
+            "displayFolder": "CANTIDADES_COL_GENERO"
+          },
+          {
+            "name": "CANTIDAD_COL_GEN_MIXTO",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_GENERO]=\"MIXTO\"))",
+            "displayFolder": "CANTIDADES_COL_GENERO"
+          },
+          {
+            "name": "CANTIDAD_COL_JORNADA_UNICA",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_JORNADA]=\"UNICA\"))",
+            "displayFolder": "CANTIDADES_COL_JORNADA"
+          },
+          {
+            "name": "CANTIDAD_COL_JORNADA_NOCHE",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_JORNADA]=\"NOCHE\"))",
+            "displayFolder": "CANTIDADES_COL_JORNADA"
+          },
+          {
+            "name": "CANTIDAD_COL_JORNADA_COMPLETA",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_JORNADA]=\"COMPLETA\"))",
+            "displayFolder": "CANTIDADES_COL_JORNADA"
+          },
+          {
+            "name": "CANTIDAD_COL_JORNADA_MANANA",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_JORNADA]=\"MAÑANA\"))",
+            "displayFolder": "CANTIDADES_COL_JORNADA"
+          },
+          {
+            "name": "CANTIDAD_COL_JORNADA_SABATINA",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_JORNADA]=\"SABATINA\"))",
+            "displayFolder": "CANTIDADES_COL_JORNADA"
+          },
+          {
+            "name": "CANTIDAD_COL_TECNICO",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_CARACTER]=\"TÉCNICO\"))",
+            "displayFolder": "CANTIDADES_COL_CARACTER"
+          },
+          {
+            "name": "CANTIDAD_COL_ACADEMICO",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_CARACTER]=\"ACADÉMICO\"))",
+            "displayFolder": "CANTIDADES_COL_CARACTER"
+          },
+          {
+            "name": "CANTIDAD_COL_TECNICO_ACADEMICO",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_CARACTER]=\"TÉCNICO/ACADÉMICO\"))",
+            "displayFolder": "CANTIDADES_COL_CARACTER"
+          },
+          {
+            "name": "CANTIDAD_COL_NOAPLICA",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_CARACTER]=\"NO APLICA\"))",
+            "displayFolder": "CANTIDADES_COL_CARACTER"
+          },
+          {
+            "name": "CANTIDAD_ESTRATO_1",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_FACTORES_SOCIECONOMICOS,DIM_FACTORES_SOCIECONOMICOS[ESTRATO_VIVIENDA]=\"Estrato 1\"))",
+            "displayFolder": "CANTIDADES_ESTRATOS"
+          },
+          {
+            "name": "CANTIDAD_ESTRATO_2",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_FACTORES_SOCIECONOMICOS,DIM_FACTORES_SOCIECONOMICOS[ESTRATO_VIVIENDA]=\"Estrato 2\"))",
+            "displayFolder": "CANTIDADES_ESTRATOS"
+          },
+          {
+            "name": "CANTIDAD_ESTRATO_3",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_FACTORES_SOCIECONOMICOS,DIM_FACTORES_SOCIECONOMICOS[ESTRATO_VIVIENDA]=\"Estrato 3\"))",
+            "displayFolder": "CANTIDADES_ESTRATOS"
+          },
+          {
+            "name": "CANTIDAD_ESTRATO_4",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_FACTORES_SOCIECONOMICOS,DIM_FACTORES_SOCIECONOMICOS[ESTRATO_VIVIENDA]=\"Estrato 4\"))",
+            "displayFolder": "CANTIDADES_ESTRATOS"
+          },
+          {
+            "name": "CANTIDAD_ESTRATO_5",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_FACTORES_SOCIECONOMICOS,DIM_FACTORES_SOCIECONOMICOS[ESTRATO_VIVIENDA]=\"Estrato 5\"))",
+            "displayFolder": "CANTIDADES_ESTRATOS"
+          },
+          {
+            "name": "CANTIDAD_ESTRATO_6",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_FACTORES_SOCIECONOMICOS,DIM_FACTORES_SOCIECONOMICOS[ESTRATO_VIVIENDA]=\"Estrato 6\"))",
+            "displayFolder": "CANTIDADES_ESTRATOS"
+          },
+          {
+            "name": "CANTIDAD_aux_MATEMATICAS",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[PUNT_MATEMATICAS]=1))"
+          },
+          {
+            "name": "CANTIDAD_SI_FAMI_TIENE_AUTOMOVIL",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_FACTORES_SOCIECONOMICOS,DIM_FACTORES_SOCIECONOMICOS[FAMI_TIENE_AUTOMOVIL]=\"Si\"))",
+            "displayFolder": "CANTIDADES_FAMI_TIENE_AUTOMOVIL"
+          },
+          {
+            "name": "CANTIDAD_NO_FAMI_TIENE_AUTOMOVIL",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_FACTORES_SOCIECONOMICOS,DIM_FACTORES_SOCIECONOMICOS[FAMI_TIENE_AUTOMOVIL]=\"No\" ))",
+            "displayFolder": "CANTIDADES_FAMI_TIENE_AUTOMOVIL"
+          },
+          {
+            "name": "CANTIDAD_SI_FAMI_TIENE_COMPUTADOR",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_FACTORES_SOCIECONOMICOS,DIM_FACTORES_SOCIECONOMICOS[FAMI_TIENE_COMPUTADOR]=\"Si\"))",
+            "displayFolder": "CANTIDADES_FAMI_TIENE_COMPUTADOR"
+          },
+          {
+            "name": "CANTIDAD_NO_FAMI_TIENE_COMPUTADOR",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_FACTORES_SOCIECONOMICOS,DIM_FACTORES_SOCIECONOMICOS[FAMI_TIENE_COMPUTADOR]=\"No\" ))",
+            "displayFolder": "CANTIDADES_FAMI_TIENE_COMPUTADOR"
+          },
+          {
+            "name": "CANTIDAD_SI_FAMI_TIENE_INTERNET",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_FACTORES_SOCIECONOMICOS,DIM_FACTORES_SOCIECONOMICOS[FAMI_TIENE_INTERNET]=\"Si\"))",
+            "displayFolder": "CANTIDADES_FAMI_TIENE_INTERNET"
+          },
+          {
+            "name": "CANTIDAD_NO_FAMI_TIENE_INTERNET",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_FACTORES_SOCIECONOMICOS,DIM_FACTORES_SOCIECONOMICOS[FAMI_TIENE_INTERNET]=\"No\" ))",
+            "displayFolder": "CANTIDADES_FAMI_TIENE_INTERNET"
+          },
+          {
+            "name": "CANTIDAD_SI_FAMI_TIENE_LAVADORA",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_FACTORES_SOCIECONOMICOS,DIM_FACTORES_SOCIECONOMICOS[FAMI_TIENE_LAVADORA]=\"Si\"))",
+            "displayFolder": "CANTIDADES_FAMI_TIENE_LAVADORA"
+          },
+          {
+            "name": "CANTIDAD_NO_FAMI_TIENE_LAVADORA",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_FACTORES_SOCIECONOMICOS,DIM_FACTORES_SOCIECONOMICOS[FAMI_TIENE_LAVADORA]=\"No\" ))",
+            "displayFolder": "CANTIDADES_FAMI_TIENE_LAVADORA"
+          },
+          {
+            "name": "PUNT_GLOBAL_1",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[INT_PUNT_GLOBAL]>=0 &&DIM_RESULTADOS[INT_PUNT_GLOBAL]<=125))",
+            "displayFolder": "CANTIDAD_PUNT_GLOBAL"
+          },
+          {
+            "name": "PUNT_GLOBAL_2",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[INT_PUNT_GLOBAL]>125 &&DIM_RESULTADOS[INT_PUNT_GLOBAL]<=250))",
+            "displayFolder": "CANTIDAD_PUNT_GLOBAL"
+          },
+          {
+            "name": "PUNT_GLOBAL_3",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[INT_PUNT_GLOBAL]>250 &&DIM_RESULTADOS[INT_PUNT_GLOBAL]<=375))",
+            "displayFolder": "CANTIDAD_PUNT_GLOBAL"
+          },
+          {
+            "name": "PUNT_GLOBAL_4",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_RESULTADOS,DIM_RESULTADOS[INT_PUNT_GLOBAL]>375&&DIM_RESULTADOS[INT_PUNT_GLOBAL]<=500 ))",
+            "displayFolder": "CANTIDAD_PUNT_GLOBAL"
+          },
+          {
+            "name": "CANTIDAD_COL_OFICIAL",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_NATURALEZA]=\"OFICIAL\"))"
+          },
+          {
+            "name": "CANTIDAD_COL_NO_OFICIAL",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_NATURALEZA]=\"NO OFICIAL\"))"
+          },
+          {
+            "name": "CANTIDAD_COL_BILINGUE",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_ES_BILINGUE]=\"S\"))"
+          },
+          {
+            "name": "CANTIDAD_COL_NO_BILINGUE",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_ES_BILINGUE]=\"N\"))"
+          },
+          {
+            "name": "CANTIDAD_COL_CALENDARIO_A",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_CALENDARIO]=\"A\"))"
+          },
+          {
+            "name": "CANTIDAD_COL_CALENDARIO_B",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_COLEGIO,DIM_COLEGIO[STR_CALENDARIO]=\"B\"))"
+          },
+          {
+            "name": "CANTIDAD_ESTUDIANTES_MUJERES",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_ESTUDIANTE,DIM_ESTUDIANTE[STR_GENERO]=\"F\"))"
+          },
+          {
+            "name": "CANTIDAD_ESTUDIANTES_HOMBRES",
+            "expression": "CALCULATE(SUM(FACT_RESULTADOS_SABER_11[NUM_CANTIDAD]),FILTER(DIM_ESTUDIANTE,DIM_ESTUDIANTE[STR_GENERO]=\"M\"))"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "b59a9574-7416-4f10-b6f0-7ca3e3071249",
+        "fromTable": "FACT_RESULTADOS_SABER_11",
+        "fromColumn": "SK_DIM_RESULTADOS",
+        "toTable": "DIM_RESULTADOS",
+        "toColumn": "SK_DIM_RESULTADOS"
+      },
+      {
+        "name": "c75f7de5-4da5-4040-a27b-24891425235e",
+        "fromTable": "FACT_RESULTADOS_SABER_11",
+        "fromColumn": "SK_DIM_COLEGIO",
+        "toTable": "DIM_COLEGIO",
+        "toColumn": "SK_DIM_COLEGIO"
+      },
+      {
+        "name": "dc9b7f1e-5f2a-47d3-ab7d-36faa4404703",
+        "fromTable": "FACT_RESULTADOS_SABER_11",
+        "fromColumn": "SK_DIM_ESTUDIANTE",
+        "toTable": "DIM_ESTUDIANTE",
+        "toColumn": "SK_DIM_ESTUDIANTE"
+      },
+      {
+        "name": "19861ed7-5f2b-458e-a305-3307d08de8c0",
+        "fromTable": "FACT_RESULTADOS_SABER_11",
+        "fromColumn": "SK_DIM_FACTORES_SOCIOECONOMICOS",
+        "toTable": "DIM_FACTORES_SOCIECONOMICOS",
+        "toColumn": "SK_DIM_FACTORES"
+      },
+      {
+        "name": "f820e9d7-d75a-4b22-9a1a-604c09bc5f26",
+        "fromTable": "FACT_RESULTADOS_SABER_11",
+        "fromColumn": "SK_DIM_TIEMPO",
+        "toTable": "DIM_TIEMPO",
+        "toColumn": "SK_DIM_TIEMPO"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "500"
+      }
+    ]
+  }
+}

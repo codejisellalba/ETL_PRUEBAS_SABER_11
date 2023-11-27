@@ -1,0 +1,2234 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/10/2023 7:49:12 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-TM2C912"
+  DTS:CreatorName="DESKTOP-TM2C912\pc"
+  DTS:DTSID="{BE6B63C7-60E3-48ED-BE8B-6E7926915EA1}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5035.3"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{4083FC23-1C5F-4F5A-9A86-C58AFE0E8E06}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{861F139D-6318-4553-BDD9-EA9467B607C5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="errores">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_FACT_RESULTADOS_SABER_11"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{C0382A61-1D30-4CAC-BF5A-543B8D4F0230}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_FACT_RESULTADOS_SABER_11"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column.Outputs[Derived Column Output].Columns[DT_FECHA_CARGA]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column.Outputs[Derived Column Output].Columns[DT_FECHA_CARGA]"
+                      name="DT_FECHA_CARGA"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1.Inputs[Derived Column Input].Columns[SK_DIM_ESTUDIANTE]"
+                      cachedDataType="i4"
+                      cachedName="SK_DIM_ESTUDIANTE"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[SK_DIM_ESTUDIANTE]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1.Outputs[Derived Column Output].Columns[CONVERT_SK_DIM_ESTUDIANTE]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1.Outputs[Derived Column Output].Columns[CONVERT_SK_DIM_ESTUDIANTE]"
+                      name="CONVERT_SK_DIM_ESTUDIANTE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[ISNULL](#{Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[SK_DIM_ESTUDIANTE]}) ? 0 : #{Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[SK_DIM_ESTUDIANTE]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(SK_DIM_ESTUDIANTE) ? 0 : SK_DIM_ESTUDIANTE</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1.Outputs[Derived Column Output].Columns[NUM_CANTIDAD]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1.Outputs[Derived Column Output].Columns[NUM_CANTIDAD]"
+                      name="NUM_CANTIDAD"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">1</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="DIM_ESTUDIANTES"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+	[SK_DIM_ESTUDIANTE],
+	CONCAT(
+		[STR_TIPO_DOCUMENTO],
+		[INT_COD_DEPTO_PRESENTACION],
+		[INT_COD_MCPIO_PRESENTACION],
+		[INT_COD_DEPTO_PRESENTACION],
+		[INT_COD_RESIDE_MCPIO],
+		[STR_DEPTO_PRESENTACION],
+		[STR_DEPTO_RESIDE],
+		[STR_ES_ESTUDIANTE],
+		CONVERT(VARCHAR,[STR_FECHA_NACIMIENTO], 101),
+		[STR_GENERO],
+		[STR_MCPIO_PRESENTACION],
+		[STR_MCPIO_RESIDE],
+		[STR_NACIONALIDAD],
+		[STR_PAIS_RESIDE],
+		[STR_ES_PRIVADO_LIBERTAD])
+	AS LLAVE_DIM_ESTUDIANTE
+FROM [dbo].[DIM_ESTUDIANTE] order by 2;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Connections[OleDbConnection]"
+                  connectionManagerID="{B40470B4-2D69-4663-8E51-D47A16AC5D76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_UPTC]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Output].Columns[SK_DIM_ESTUDIANTE]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Output].ExternalColumns[SK_DIM_ESTUDIANTE]"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Output].Columns[SK_DIM_ESTUDIANTE]"
+                      name="SK_DIM_ESTUDIANTE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Output].Columns[LLAVE_DIM_ESTUDIANTE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Output].ExternalColumns[LLAVE_DIM_ESTUDIANTE]"
+                      length="911"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Output].Columns[LLAVE_DIM_ESTUDIANTE]"
+                      name="LLAVE_DIM_ESTUDIANTE"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Output].ExternalColumns[SK_DIM_ESTUDIANTE]"
+                      dataType="i4"
+                      name="SK_DIM_ESTUDIANTE" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Output].ExternalColumns[LLAVE_DIM_ESTUDIANTE]"
+                      dataType="wstr"
+                      length="911"
+                      name="LLAVE_DIM_ESTUDIANTE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Error Output].Columns[SK_DIM_ESTUDIANTE]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Error Output].Columns[SK_DIM_ESTUDIANTE]"
+                      name="SK_DIM_ESTUDIANTE" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Error Output].Columns[LLAVE_DIM_ESTUDIANTE]"
+                      dataType="wstr"
+                      length="911"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Error Output].Columns[LLAVE_DIM_ESTUDIANTE]"
+                      name="LLAVE_DIM_ESTUDIANTE" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_DIM_COLEGIOS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+	[SK_DIM_COLEGIO],
+	CONCAT(
+		[STR_AREA_UBICACION],
+		[STR_ES_BILINGUE],
+		[STR_CARACTER],
+		[INT_CODIGO_DEPTO],
+		[INT_CODIGO_MCPIO],
+		[STR_DEPTO_UBICACION],
+		[STR_GENERO],
+		[STR_JORNADA],
+		[STR_MCPIO_UBICACION],
+		[STR_NATURALEZA],
+		[STR_CALENDARIO]
+	) AS LLAVE_DIM_COLEGIO
+FROM [dbo].[DIM_COLEGIO]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT
+	[SK_DIM_COLEGIO],
+	CONCAT(
+		[STR_AREA_UBICACION],
+		[STR_ES_BILINGUE],
+		[STR_CARACTER],
+		[INT_CODIGO_DEPTO],
+		[INT_CODIGO_MCPIO],
+		[STR_DEPTO_UBICACION],
+		[STR_GENERO],
+		[STR_JORNADA],
+		[STR_MCPIO_UBICACION],
+		[STR_NATURALEZA],
+		[STR_CALENDARIO]
+	) AS LLAVE_DIM_COLEGIO
+FROM [dbo].[DIM_COLEGIO]) [refTable]
+where [refTable].[LLAVE_DIM_COLEGIO] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SK_DIM_COLEGIO" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LLAVE_DIM_COLEGIO" dataType="DT_WSTR" length="379" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[DIM_COLEGIO]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS.Connections[OleDbConnection]"
+                  connectionManagerID="{B40470B4-2D69-4663-8E51-D47A16AC5D76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_UPTC]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS.Inputs[Lookup Input].Columns[DIM_COLEGIO]"
+                      cachedDataType="wstr"
+                      cachedLength="391"
+                      cachedName="DIM_COLEGIO"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[DIM_COLEGIO]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">LLAVE_DIM_COLEGIO</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS.Outputs[Lookup Match Output].Columns[SK_DIM_COLEGIO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS.Outputs[Lookup Match Output].Columns[SK_DIM_COLEGIO]"
+                      name="SK_DIM_COLEGIO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SK_DIM_COLEGIO</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_DIM_FACTORES"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+[SK_DIM_FACTORES],
+CONCAT(
+		[CUARTOS_HOGAR],
+		[EDUCACION_MADRE] ,
+		[EDUCACION_PADRE],
+		[ESTRATO_VIVIENDA],
+		[PERSONAS_HOGAR],
+		[FAMI_TIENE_AUTOMOVIL],
+		[FAMI_TIENE_COMPUTADOR],
+		[FAMI_TIENE_INTERNET],
+		[FAMI_TIENE_LAVADORA]
+	) 
+AS LLAVE_DIM_FACTORES_SOCIOECONOMICOS
+FROM [dbo].[DIM_FACTORES_SOCIECONOMICOS];</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT
+[SK_DIM_FACTORES],
+CONCAT(
+		[CUARTOS_HOGAR],
+		[EDUCACION_MADRE] ,
+		[EDUCACION_PADRE],
+		[ESTRATO_VIVIENDA],
+		[PERSONAS_HOGAR],
+		[FAMI_TIENE_AUTOMOVIL],
+		[FAMI_TIENE_COMPUTADOR],
+		[FAMI_TIENE_INTERNET],
+		[FAMI_TIENE_LAVADORA]
+	) 
+AS LLAVE_DIM_FACTORES_SOCIOECONOMICOS
+FROM [dbo].[DIM_FACTORES_SOCIECONOMICOS];) [refTable]
+where [refTable].[LLAVE_DIM_FACTORES_SOCIOECONOMICOS] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SK_DIM_FACTORES" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LLAVE_DIM_FACTORES_SOCIOECONOMICOS" dataType="DT_WSTR" length="338" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DIM_FACTORES_SOCIOECONOMICOS]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES.Connections[OleDbConnection]"
+                  connectionManagerID="{B40470B4-2D69-4663-8E51-D47A16AC5D76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_UPTC]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES.Inputs[Lookup Input].Columns[DIM_FACTORES_SOCIOECONOMICOS]"
+                      cachedDataType="wstr"
+                      cachedLength="338"
+                      cachedName="DIM_FACTORES_SOCIOECONOMICOS"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[DIM_FACTORES_SOCIOECONOMICOS]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">LLAVE_DIM_FACTORES_SOCIOECONOMICOS</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES.Outputs[Lookup Match Output].Columns[SK_DIM_FACTORES]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES.Outputs[Lookup Match Output].Columns[SK_DIM_FACTORES]"
+                      name="SK_DIM_FACTORES"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SK_DIM_FACTORES</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_DIM_RESULTADOS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+[SK_DIM_RESULTADOS],
+CONCAT(
+ 	[DESEMPENO_INGLES],
+	[PUNT_INGLES],
+	[PUNT_MATEMATICAS],
+	[PUNT_SOCIALES_CIUDADAS],
+	[PUNT_C_NATURALES],
+	[PUNT_LECTURA_CRITICA],
+	[int_PUNT_GLOBAL]) AS LAVE_DIM_RESULTADOS
+FROM [dbo].[DIM_RESULTADOS];</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT
+[SK_DIM_RESULTADOS],
+CONCAT(
+ 	[DESEMPENO_INGLES],
+	[PUNT_INGLES],
+	[PUNT_MATEMATICAS],
+	[PUNT_SOCIALES_CIUDADAS],
+	[PUNT_C_NATURALES],
+	[PUNT_LECTURA_CRITICA],
+	[int_PUNT_GLOBAL]) AS LAVE_DIM_RESULTADOS
+FROM [dbo].[DIM_RESULTADOS];) [refTable]
+where [refTable].[LAVE_DIM_RESULTADOS] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SK_DIM_RESULTADOS" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LAVE_DIM_RESULTADOS" dataType="DT_WSTR" length="74" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[DIM_RESULTADOS]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS.Connections[OleDbConnection]"
+                  connectionManagerID="{B40470B4-2D69-4663-8E51-D47A16AC5D76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_UPTC]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS.Inputs[Lookup Input].Columns[DIM_RESULTADOS]"
+                      cachedDataType="wstr"
+                      cachedLength="74"
+                      cachedName="DIM_RESULTADOS"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[DIM_RESULTADOS]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">LAVE_DIM_RESULTADOS</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS.Outputs[Lookup Match Output].Columns[SK_DIM_RESULTADOS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS.Outputs[Lookup Match Output].Columns[SK_DIM_RESULTADOS]"
+                      name="SK_DIM_RESULTADOS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SK_DIM_RESULTADOS</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_DIM_TIEMPO"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+[SK_DIM_TIEMPO],
+CONCAT(
+	[ANIO],
+	[PERIODO]
+	) AS LLAVE_DIM_TIEMPO
+FROM [dbo].[DIM_TIEMPO];</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT 
+[SK_DIM_TIEMPO],
+CONCAT(
+	[ANIO],
+	[PERIODO]
+	) AS LLAVE_DIM_TIEMPO
+FROM [dbo].[DIM_TIEMPO];) [refTable]
+where [refTable].[LLAVE_DIM_TIEMPO] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SK_DIM_TIEMPO" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LLAVE_DIM_TIEMPO" dataType="DT_STR" length="24" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DIM_TIEMPO]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO.Connections[OleDbConnection]"
+                  connectionManagerID="{B40470B4-2D69-4663-8E51-D47A16AC5D76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_UPTC]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO.Inputs[Lookup Input].Columns[DIM_TIEMPO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="11"
+                      cachedName="DIM_TIEMPO"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[DIM_TIEMPO]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">LLAVE_DIM_TIEMPO</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO.Outputs[Lookup Match Output].Columns[SK_DIM_TIEMPO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO.Outputs[Lookup Match Output].Columns[SK_DIM_TIEMPO]"
+                      name="SK_DIM_TIEMPO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SK_DIM_TIEMPO</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Inputs[Merge Join Left Input].Columns[DIM_ESTUDIANTE]"
+                      cachedDataType="wstr"
+                      cachedLength="902"
+                      cachedName="DIM_ESTUDIANTE"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DIM_ESTUDIANTE]" />
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Inputs[Merge Join Left Input].Columns[DIM_COLEGIO]"
+                      cachedDataType="wstr"
+                      cachedLength="391"
+                      cachedName="DIM_COLEGIO"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DIM_COLEGIO]" />
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Inputs[Merge Join Left Input].Columns[DIM_FACTORES_SOCIOECONOMICOS]"
+                      cachedDataType="wstr"
+                      cachedLength="338"
+                      cachedName="DIM_FACTORES_SOCIOECONOMICOS"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DIM_FACTORES_SOCIOECONOMICOS]" />
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Inputs[Merge Join Left Input].Columns[DIM_RESULTADOS]"
+                      cachedDataType="wstr"
+                      cachedLength="74"
+                      cachedName="DIM_RESULTADOS"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DIM_RESULTADOS]" />
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Inputs[Merge Join Left Input].Columns[DIM_TIEMPO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="11"
+                      cachedName="DIM_TIEMPO"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DIM_TIEMPO]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Inputs[Merge Join Right Input].Columns[LLAVE_DIM_ESTUDIANTE]"
+                      cachedDataType="wstr"
+                      cachedLength="911"
+                      cachedName="LLAVE_DIM_ESTUDIANTE"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Output].Columns[LLAVE_DIM_ESTUDIANTE]" />
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Inputs[Merge Join Right Input].Columns[SK_DIM_ESTUDIANTE]"
+                      cachedDataType="i4"
+                      cachedName="SK_DIM_ESTUDIANTE"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Output].Columns[SK_DIM_ESTUDIANTE]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[DIM_COLEGIO]"
+                      dataType="wstr"
+                      length="391"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[DIM_COLEGIO]"
+                      name="DIM_COLEGIO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Inputs[Merge Join Left Input].Columns[DIM_COLEGIO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[DIM_ESTUDIANTE]"
+                      dataType="wstr"
+                      length="902"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[DIM_ESTUDIANTE]"
+                      name="DIM_ESTUDIANTE"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Inputs[Merge Join Left Input].Columns[DIM_ESTUDIANTE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[DIM_FACTORES_SOCIOECONOMICOS]"
+                      dataType="wstr"
+                      length="338"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[DIM_FACTORES_SOCIOECONOMICOS]"
+                      name="DIM_FACTORES_SOCIOECONOMICOS">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Inputs[Merge Join Left Input].Columns[DIM_FACTORES_SOCIOECONOMICOS]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[DIM_RESULTADOS]"
+                      dataType="wstr"
+                      length="74"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[DIM_RESULTADOS]"
+                      name="DIM_RESULTADOS">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Inputs[Merge Join Left Input].Columns[DIM_RESULTADOS]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[DIM_TIEMPO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[DIM_TIEMPO]"
+                      name="DIM_TIEMPO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Inputs[Merge Join Left Input].Columns[DIM_TIEMPO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[SK_DIM_ESTUDIANTE]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[SK_DIM_ESTUDIANTE]"
+                      name="SK_DIM_ESTUDIANTE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Inputs[Merge Join Right Input].Columns[SK_DIM_ESTUDIANTE]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FACT_RESULTADOS_SABER_11]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{B40470B4-2D69-4663-8E51-D47A16AC5D76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_UPTC]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SK_DIM_COLEGIO]"
+                      cachedDataType="i4"
+                      cachedName="SK_DIM_COLEGIO"
+                      externalMetadataColumnId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SK_DIM_COLEGIO]"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS.Outputs[Lookup Match Output].Columns[SK_DIM_COLEGIO]" />
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SK_DIM_RESULTADOS]"
+                      cachedDataType="i4"
+                      cachedName="SK_DIM_RESULTADOS"
+                      externalMetadataColumnId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SK_DIM_RESULTADOS]"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS.Outputs[Lookup Match Output].Columns[SK_DIM_RESULTADOS]" />
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SK_DIM_TIEMPO]"
+                      cachedDataType="i4"
+                      cachedName="SK_DIM_TIEMPO"
+                      externalMetadataColumnId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SK_DIM_TIEMPO]"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO.Outputs[Lookup Match Output].Columns[SK_DIM_TIEMPO]" />
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DT_FECHA_CARGA]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DT_FECHA_CARGA"
+                      externalMetadataColumnId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DT_FECHA_ACTUALIZACION]"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column.Outputs[Derived Column Output].Columns[DT_FECHA_CARGA]" />
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SK_DIM_FACTORES]"
+                      cachedDataType="i4"
+                      cachedName="SK_DIM_FACTORES"
+                      externalMetadataColumnId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SK_DIM_FACTORES_SOCIOECONOMICOS]"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES.Outputs[Lookup Match Output].Columns[SK_DIM_FACTORES]" />
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SK_DIM_ESTUDIANTE]"
+                      cachedDataType="i4"
+                      cachedName="SK_DIM_ESTUDIANTE"
+                      externalMetadataColumnId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SK_DIM_ESTUDIANTE]"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output].Columns[SK_DIM_ESTUDIANTE]" />
+                    <inputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NUM_CANTIDAD]"
+                      cachedDataType="i4"
+                      cachedName="NUM_CANTIDAD"
+                      externalMetadataColumnId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NUM_CANTIDAD]"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1.Outputs[Derived Column Output].Columns[NUM_CANTIDAD]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SK_FACT_RESULTADOS]"
+                      dataType="i4"
+                      name="SK_FACT_RESULTADOS" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SK_DIM_FACTORES_SOCIOECONOMICOS]"
+                      dataType="i4"
+                      name="SK_DIM_FACTORES_SOCIOECONOMICOS" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SK_DIM_TIEMPO]"
+                      dataType="i4"
+                      name="SK_DIM_TIEMPO" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SK_DIM_ESTUDIANTE]"
+                      dataType="i4"
+                      name="SK_DIM_ESTUDIANTE" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SK_DIM_COLEGIO]"
+                      dataType="i4"
+                      name="SK_DIM_COLEGIO" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SK_DIM_RESULTADOS]"
+                      dataType="i4"
+                      name="SK_DIM_RESULTADOS" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DT_FECHA_ACTUALIZACION]"
+                      dataType="dbTimeStamp"
+                      name="DT_FECHA_ACTUALIZACION" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NUM_CANTIDAD]"
+                      dataType="i4"
+                      name="NUM_CANTIDAD" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE_DB_TBL_RESULTADOS_SABER_11"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+TRIM(CONCAT(
+	[STR_COLE_AREA_UBICACION],
+	[STR_ES_BILINGUE],
+	[STR_COLEGIO_CARACTER],
+	[INT_COLE_CODIGO_DEPTO],
+	[INT_COLE_CODIGO_MCPIO],
+	[STR_COLE_DEPTO_UBICACION],
+	[STR_COLE_GENERO],
+	[STR_COLEGIO_JORNADA],
+	[STR_COLE_MCPIO_UBICACION],
+	[STR_COLE_NATURALEZA],
+	[STR_CALENDARIO])) AS DIM_COLEGIO,
+TRIM(CONCAT(
+	[STR_TIPO_DOCUMENTO],
+	[INT_ESTU_COD_DEPTO_PRESENTACION],
+	[INT_ESTU_COD_MCPIO_PRESENTACION],
+	[INT_ESTU_COD_RESIDE_DEPTO],
+	[INT_ESTU_COD_RESIDE_MCPIO],
+	[STR_ESTU_DEPTO_PRESENTACION],
+	[STR_ESTU_DEPTO_RESIDE],
+	[STR_ESTU_ESTUDIANTE],
+	CONVERT(VARCHAR,[STR_ESTU_FECHANACIMIENTO], 101),
+	[STR_ESTU_GENERO],
+	[STR_ESTU_MCPIO_PRESENTACION],
+	[STR_ESTU_MCPIO_RESIDE],
+	[STR_ESTU_NACIONALIDAD],
+	[STR_ESTU_PAIS_RESIDE],
+	[STR_ESTU_PRIVADO_LIBERTAD])) AS DIM_ESTUDIANTE,
+TRIM(CONCAT(
+	[STR_FAMI_CUARTOS_HOGAR],
+	[STR_FAMI_EDUCACION_MADRE] ,
+	[STR_FAMI_EDUCACION_PADRE],
+	[STR_FAMI_ESTRATO_VIVIENDA],
+	[STR_FAMI_PERSONAS_HOGAR],
+	[STR_FAMI_TIENE_AUTOMOVIL],
+	[STR_FAMI_TIENE_COMPUTADOR],
+	[STR_FAMI_TIENE_INTERNET],
+	[STR_FAMI_TIENE_LAVADORA])) AS DIM_FACTORES_SOCIOECONOMICOS,
+TRIM(CONCAT(
+ 	[STR_DESEMP_INGLES],
+	CASE
+	WHEN [INT_PUNT_INGLES] &gt;=0 AND [INT_PUNT_INGLES] &lt;=25 THEN 1
+	WHEN [INT_PUNT_INGLES] &gt;=26 AND [INT_PUNT_INGLES] &lt;=50 THEN 2
+	WHEN [INT_PUNT_INGLES] &gt;=51 AND [INT_PUNT_INGLES] &lt;=75 THEN 3
+	ELSE 4
+	END,
+	CASE
+	WHEN [INT_PUNT_MATEMATICAS] &gt;=0 AND [INT_PUNT_MATEMATICAS] &lt;=25 THEN 1
+	WHEN [INT_PUNT_MATEMATICAS] &gt;=26 AND [INT_PUNT_MATEMATICAS] &lt;=50 THEN 2
+	WHEN [INT_PUNT_MATEMATICAS] &gt;=51 AND [INT_PUNT_MATEMATICAS] &lt;=75 THEN 3
+	ELSE 4
+	END,	
+	CASE
+	WHEN [INT_PUNT_SOCIALES_CIUDADANAS] &gt;=0 AND [INT_PUNT_SOCIALES_CIUDADANAS] &lt;=25 THEN 1
+	WHEN [INT_PUNT_SOCIALES_CIUDADANAS] &gt;=26 AND [INT_PUNT_SOCIALES_CIUDADANAS] &lt;=50 THEN 2
+	WHEN [INT_PUNT_SOCIALES_CIUDADANAS] &gt;=51 AND [INT_PUNT_SOCIALES_CIUDADANAS] &lt;=75 THEN 3
+	ELSE 4
+	END,
+	
+	CASE
+	WHEN [INT_PUNT_C_NATURALES] &gt;=0 AND [INT_PUNT_C_NATURALES] &lt;=25 THEN 1
+	WHEN [INT_PUNT_C_NATURALES] &gt;=26 AND [INT_PUNT_C_NATURALES] &lt;=50 THEN 2
+	WHEN [INT_PUNT_C_NATURALES] &gt;=51 AND [INT_PUNT_C_NATURALES] &lt;=75 THEN 3
+	ELSE 4
+	END,
+	
+	CASE
+	WHEN [INT_PUNT_LECTURA_CRITICA] &gt;=0 AND [INT_PUNT_LECTURA_CRITICA] &lt;=25 THEN 1
+	WHEN [INT_PUNT_LECTURA_CRITICA] &gt;=26 AND [INT_PUNT_LECTURA_CRITICA] &lt;=50 THEN 2
+	WHEN [INT_PUNT_LECTURA_CRITICA] &gt;=51 AND [INT_PUNT_LECTURA_CRITICA] &lt;=75 THEN 3
+	ELSE 4
+	END,
+	[INT_PUNT_GLOBAL])
+	
+	) AS DIM_RESULTADOS,
+TRIM(CONCAT(
+	SUBSTRING(CAST([INT_PERIODO] AS VARCHAR), 0, 5), 
+	SUBSTRING(CAST([INT_PERIODO] AS VARCHAR), 5, 6))
+	) AS DIM_TIEMPO
+FROM [STAGE_UPTC].[dbo].[RESULTADOS_SABER_11]
+ORDER BY 2;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Connections[OleDbConnection]"
+                  connectionManagerID="{00B4DFE2-2EED-4993-AD87-4CE661A08CD3}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[STAGE_UPTC]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DIM_COLEGIO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[DIM_COLEGIO]"
+                      length="391"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DIM_COLEGIO]"
+                      name="DIM_COLEGIO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DIM_ESTUDIANTE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[DIM_ESTUDIANTE]"
+                      length="902"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DIM_ESTUDIANTE]"
+                      name="DIM_ESTUDIANTE"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DIM_FACTORES_SOCIOECONOMICOS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[DIM_FACTORES_SOCIOECONOMICOS]"
+                      length="338"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DIM_FACTORES_SOCIOECONOMICOS]"
+                      name="DIM_FACTORES_SOCIOECONOMICOS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DIM_RESULTADOS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[DIM_RESULTADOS]"
+                      length="74"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DIM_RESULTADOS]"
+                      name="DIM_RESULTADOS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DIM_TIEMPO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[DIM_TIEMPO]"
+                      length="11"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DIM_TIEMPO]"
+                      name="DIM_TIEMPO"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[DIM_COLEGIO]"
+                      dataType="wstr"
+                      length="391"
+                      name="DIM_COLEGIO" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[DIM_ESTUDIANTE]"
+                      dataType="wstr"
+                      length="902"
+                      name="DIM_ESTUDIANTE" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[DIM_FACTORES_SOCIOECONOMICOS]"
+                      dataType="wstr"
+                      length="338"
+                      name="DIM_FACTORES_SOCIOECONOMICOS" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[DIM_RESULTADOS]"
+                      dataType="wstr"
+                      length="74"
+                      name="DIM_RESULTADOS" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[DIM_TIEMPO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      name="DIM_TIEMPO" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[DIM_COLEGIO]"
+                      dataType="wstr"
+                      length="391"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[DIM_COLEGIO]"
+                      name="DIM_COLEGIO" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[DIM_ESTUDIANTE]"
+                      dataType="wstr"
+                      length="902"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[DIM_ESTUDIANTE]"
+                      name="DIM_ESTUDIANTE" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[DIM_FACTORES_SOCIOECONOMICOS]"
+                      dataType="wstr"
+                      length="338"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[DIM_FACTORES_SOCIOECONOMICOS]"
+                      name="DIM_FACTORES_SOCIOECONOMICOS" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[DIM_RESULTADOS]"
+                      dataType="wstr"
+                      length="74"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[DIM_RESULTADOS]"
+                      name="DIM_RESULTADOS" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[DIM_TIEMPO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[DIM_TIEMPO]"
+                      name="DIM_TIEMPO" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11.Paths[Derived Column Output]"
+              endId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11.Paths[Derived Column Output1]"
+              endId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11.Paths[Lookup Match Output]"
+              endId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11.Paths[Lookup Match Output1]"
+              endId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11.Paths[Lookup Match Output2]"
+              endId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11.Paths[Lookup Match Output3]"
+              endId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11.Paths[Merge Join Output]"
+              endId="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column.Inputs[Derived Column Input]"
+              name="Merge Join Output"
+              startId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11.Paths[OLE DB Source Output]"
+              endId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Inputs[Merge Join Left Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT_FACT_RESULTADOS_SABER_11.Paths[OLE DB Source Output1]"
+              endId="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join.Inputs[Merge Join Right Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{548E8C77-D860-437D-9EF8-2FFE9275EDA4}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B40470B4-2D69-4663-8E51-D47A16AC5D76}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE FACT_RESULTADOS_SABER_11" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{9D6CB5A3-DC3C-4E6F-97DF-2C04654D06E2}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT_FACT_RESULTADOS_SABER_11" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="252,41.6"
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11"
+          TopLeft="254.285718616175,176.647061300938" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Execute SQL Task"
+          TopLeft="300.71429083542,68.0588244839111" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="381.100004725797,109.658824483911">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66.9882368170266"
+              Start="0,0"
+              End="0,59.4882368170266">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.4882368170266" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_FACT_RESULTADOS_SABER_11">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES"
+          TopLeft="225.714289558177,406.441182170772" />
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO"
+          TopLeft="230.357146780102,555.367654847646" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination"
+          TopLeft="734.821441085364,557.970594139247" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column 1"
+          TopLeft="527.678580414885,556.132360740723" />
+        <NodeLayout
+          Size="176.8,41.6"
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS"
+          TopLeft="221.071432336253,305.691180757792" />
+        <NodeLayout
+          Size="191.2,41.6"
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS"
+          TopLeft="217.142860840778,478.132359646802" />
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11\Merge Join"
+          TopLeft="241.964289834913,153.897060981878" />
+        <NodeLayout
+          Size="264.8,41.6"
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11"
+          TopLeft="177.321431591195,80.4852952464229" />
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES"
+          TopLeft="479.642865311126,149.88235504322" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11\Derived Column"
+          TopLeft="230.89286107494,240.500003372922" />
+        <EdgeLayout
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11.Paths[OLE DB Source Output]"
+          TopLeft="308.242860713054,122.085295246423">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.8117657354551"
+              Start="0,0"
+              End="0,24.3117657354551">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.3117657354551" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11.Paths[Merge Join Output]"
+          TopLeft="307.028575454926,195.497060981878">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.0029423910439"
+              Start="0,0"
+              End="0,37.5029423910439">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5029423910439" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11.Paths[Lookup Match Output3]"
+          TopLeft="311.992860947215,347.291180757792">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.1500014129809"
+              Start="0,0"
+              End="0,51.6500014129809">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.6500014129809" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,20.0203132064904,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11.Paths[Lookup Match Output2]"
+          TopLeft="395.157146780102,576.550007794184">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="132.521433634783,0"
+              Start="0,0"
+              End="125.021433634783,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="125.021433634783,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="14.3193300986415,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11.Paths[Lookup Match Output1]"
+          TopLeft="312.75000381044,519.732359646802">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.6352952008425"
+              Start="0,0"
+              End="0,28.1352952008425">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.1352952008425" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,8.26296010042125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11.Paths[Lookup Match Output]"
+          TopLeft="313.628575199478,448.041182170772">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.0911774760305"
+              Start="0,0"
+              End="0,22.5911774760305">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5911774760305" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,5.49090123801525,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11.Paths[Derived Column Output1]"
+          TopLeft="690.078580414885,577.851477439985">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="44.742860670479,0"
+              Start="0,0"
+              End="37.242860670479,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="37.242860670479,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11.Paths[Derived Column Output]"
+          TopLeft="308.382146705596,282.100003372922">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23.5911773848701"
+              Start="0,0"
+              End="0,16.0911773848701">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.0911773848701" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_FACT_RESULTADOS_SABER_11.Paths[OLE DB Source Output1]"
+          TopLeft="479.642865311126,172.689708012549">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-108.078575476213,0"
+              Start="0,0"
+              End="-100.578575476213,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-100.578575476213,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_FACTORES">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_TIEMPO">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_FACT_RESULTADOS_SABER_11\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_COLEGIOS">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_FACT_RESULTADOS_SABER_11\LKP_DIM_RESULTADOS">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_FACT_RESULTADOS_SABER_11\OLE_DB_TBL_RESULTADOS_SABER_11">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_FACT_RESULTADOS_SABER_11\DIM_ESTUDIANTES">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

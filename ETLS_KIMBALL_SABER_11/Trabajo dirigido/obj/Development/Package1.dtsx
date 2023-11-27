@@ -1,0 +1,1432 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/2/2023 8:11:05 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-TM2C912"
+  DTS:CreatorName="DESKTOP-TM2C912\pc"
+  DTS:DTSID="{CCE2AD3E-8720-41F5-8135-F357565088B1}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5035.3"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{63068430-E6B0-4B5B-8CB3-5BB5E348DB0B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4EC00F49-D044-45CE-BEA6-87A7E39050F5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ESTUDIANTES_REPETIDOS">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E8BE5784-EAB4-43AB-9B81-E8907E167DB8}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input].Columns[SK_DIM_ESTUDIANTE_D]"
+                      cachedDataType="i4"
+                      cachedName="SK_DIM_ESTUDIANTE_D"
+                      lineageId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Outputs[Lookup Match Output].Columns[SK_DIM_ESTUDIANTE_D]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split.Outputs[NUEVO]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="NUEVO"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Outputs[Lookup Match Output].Columns[SK_DIM_ESTUDIANTE_D]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(SK_DIM_ESTUDIANTE_D)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split.Outputs[REPETIDO]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="REPETIDO"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[STR_TIPO_DOCUMENTO]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="STR_TIPO_DOCUMENTO"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_TIPO_DOCUMENTO]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[INT_COD_DEPTO_PRESENTACION]"
+                      cachedDataType="i4"
+                      cachedName="INT_COD_DEPTO_PRESENTACION"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[INT_COD_DEPTO_PRESENTACION]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[INT_COD_MCPIO_PRESENTACION]"
+                      cachedDataType="i4"
+                      cachedName="INT_COD_MCPIO_PRESENTACION"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[INT_COD_MCPIO_PRESENTACION]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[COD_INT_RESIDE_DEPTO]"
+                      cachedDataType="i4"
+                      cachedName="COD_INT_RESIDE_DEPTO"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[COD_INT_RESIDE_DEPTO]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[INT_COD_RESIDE_MCPIO]"
+                      cachedDataType="i4"
+                      cachedName="INT_COD_RESIDE_MCPIO"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[INT_COD_RESIDE_MCPIO]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[STR_DEPTO_PRESENTACION]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="STR_DEPTO_PRESENTACION"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_DEPTO_PRESENTACION]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[STR_DEPTO_RESIDE]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="STR_DEPTO_RESIDE"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_DEPTO_RESIDE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[STR_ES_ESTUDIANTE]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="STR_ES_ESTUDIANTE"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_ES_ESTUDIANTE]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[LLAVE_DIM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="260"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[LLAVE_DIM]"
+                      name="LLAVE_DIM"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_ES_ESTUDIANTE]} + #{Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_DEPTO_RESIDE]} + #{Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_DEPTO_PRESENTACION]} + (DT_WSTR,10)#{Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[INT_COD_RESIDE_MCPIO]} + (DT_WSTR,10)#{Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[COD_INT_RESIDE_DEPTO]} + (DT_WSTR,10)#{Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[INT_COD_MCPIO_PRESENTACION]} + (DT_WSTR,10)#{Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[INT_COD_DEPTO_PRESENTACION]} + #{Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_TIPO_DOCUMENTO]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">STR_ES_ESTUDIANTE + STR_DEPTO_RESIDE + STR_DEPTO_PRESENTACION + (DT_WSTR,10)INT_COD_RESIDE_MCPIO + (DT_WSTR,10)COD_INT_RESIDE_DEPTO + (DT_WSTR,10)INT_COD_MCPIO_PRESENTACION + (DT_WSTR,10)INT_COD_DEPTO_PRESENTACION + STR_TIPO_DOCUMENTO</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[DT_FECHA_ACTUALIZACION]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[DT_FECHA_ACTUALIZACION]"
+                      name="DT_FECHA_ACTUALIZACION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_DIM_ESTUDIANTES"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [SK_DIM_ESTUDIANTE],CONCAT(
+STR_TIPO_DOCUMENTO,
+INT_COD_DEPTO_PRESENTACION,
+INT_COD_MCPIO_PRESENTACION,
+COD_INT_RESIDE_DEPTO,
+INT_COD_RESIDE_MCPIO,
+STR_DEPTO_PRESENTACION,
+STR_DEPTO_RESIDE,
+STR_ES_ESTUDIANTE,
+CONVERT(VARCHAR, STR_FECHA_NACIMIENTO, 101),
+STR_GENERO,
+STR_MCPIO_PRESENTACION,
+STR_MCPIO_RESIDE,
+STR_NACIONALIDAD,
+STR_PAIS_RESIDE,
+STR_ES_PRIVADO_LIBERTAD) AS LLAVE
+FROM [dbo].[DIM_ESTUDIANTE];</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT [SK_DIM_ESTUDIANTE],CONCAT(
+STR_TIPO_DOCUMENTO,
+INT_COD_DEPTO_PRESENTACION,
+INT_COD_MCPIO_PRESENTACION,
+COD_INT_RESIDE_DEPTO,
+INT_COD_RESIDE_MCPIO,
+STR_DEPTO_PRESENTACION,
+STR_DEPTO_RESIDE,
+STR_ES_ESTUDIANTE,
+CONVERT(VARCHAR, STR_FECHA_NACIMIENTO, 101),
+STR_GENERO,
+STR_MCPIO_PRESENTACION,
+STR_MCPIO_RESIDE,
+STR_NACIONALIDAD,
+STR_PAIS_RESIDE,
+STR_ES_PRIVADO_LIBERTAD) AS LLAVE
+FROM [dbo].[DIM_ESTUDIANTE];) [refTable]
+where [refTable].[LLAVE] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SK_DIM_ESTUDIANTE" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LLAVE" dataType="DT_WSTR" length="760" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[LLAVE_DIM]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Connections[OleDbConnection]"
+                  connectionManagerID="{B40470B4-2D69-4663-8E51-D47A16AC5D76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_UPTC]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Inputs[Lookup Input].Columns[LLAVE_DIM]"
+                      cachedDataType="wstr"
+                      cachedLength="260"
+                      cachedName="LLAVE_DIM"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[LLAVE_DIM]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">LLAVE</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Outputs[Lookup Match Output].Columns[SK_DIM_ESTUDIANTE_D]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Outputs[Lookup Match Output].Columns[SK_DIM_ESTUDIANTE_D]"
+                      name="SK_DIM_ESTUDIANTE_D"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SK_DIM_ESTUDIANTE</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DB_DIM_ESTUDIANTES"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DIM_ESTUDIANTE]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Connections[OleDbConnection]"
+                  connectionManagerID="{B40470B4-2D69-4663-8E51-D47A16AC5D76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_UPTC]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].Columns[STR_TIPO_DOCUMENTO]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="STR_TIPO_DOCUMENTO"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_TIPO_DOCUMENTO]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_TIPO_DOCUMENTO]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].Columns[INT_COD_DEPTO_PRESENTACION]"
+                      cachedDataType="i4"
+                      cachedName="INT_COD_DEPTO_PRESENTACION"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[INT_COD_DEPTO_PRESENTACION]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[INT_COD_DEPTO_PRESENTACION]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].Columns[INT_COD_MCPIO_PRESENTACION]"
+                      cachedDataType="i4"
+                      cachedName="INT_COD_MCPIO_PRESENTACION"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[INT_COD_MCPIO_PRESENTACION]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[INT_COD_MCPIO_PRESENTACION]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].Columns[COD_INT_RESIDE_DEPTO]"
+                      cachedDataType="i4"
+                      cachedName="COD_INT_RESIDE_DEPTO"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[COD_INT_RESIDE_DEPTO]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[COD_INT_RESIDE_DEPTO]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].Columns[INT_COD_RESIDE_MCPIO]"
+                      cachedDataType="i4"
+                      cachedName="INT_COD_RESIDE_MCPIO"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[INT_COD_RESIDE_MCPIO]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[INT_COD_RESIDE_MCPIO]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].Columns[STR_DEPTO_PRESENTACION]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="STR_DEPTO_PRESENTACION"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_DEPTO_PRESENTACION]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_DEPTO_PRESENTACION]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].Columns[STR_DEPTO_RESIDE]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="STR_DEPTO_RESIDE"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_DEPTO_RESIDE]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_DEPTO_RESIDE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].Columns[STR_ES_ESTUDIANTE]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="STR_ES_ESTUDIANTE"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_ES_ESTUDIANTE]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_ES_ESTUDIANTE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].Columns[STR_FECHA_NACIMIENTO]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="STR_FECHA_NACIMIENTO"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_FECHA_NACIMIENTO]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_FECHA_NACIMIENTO]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].Columns[STR_GENERO]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="STR_GENERO"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_GENERO]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_GENERO]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].Columns[STR_MCPIO_PRESENTACION]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="STR_MCPIO_PRESENTACION"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_MCPIO_PRESENTACION]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_MCPIO_PRESENTACION]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].Columns[STR_MCPIO_RESIDE]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="STR_MCPIO_RESIDE"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_MCPIO_RESIDE]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_MCPIO_RESIDE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].Columns[STR_NACIONALIDAD]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="STR_NACIONALIDAD"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_NACIONALIDAD]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_NACIONALIDAD]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].Columns[STR_PAIS_RESIDE]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="STR_PAIS_RESIDE"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_PAIS_RESIDE]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_PAIS_RESIDE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].Columns[STR_ES_PRIVADO_LIBERTAD]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="STR_ES_PRIVADO_LIBERTAD"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_ES_PRIVADO_LIBERTAD]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_ES_PRIVADO_LIBERTAD]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].Columns[DT_FECHA_ACTUALIZACION]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DT_FECHA_ACTUALIZACION"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[DT_FECHA_ACTUALIZACION]"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[DT_FECHA_ACTUALIZACION]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[SK_DIM_ESTUDIANTE]"
+                      dataType="i4"
+                      name="SK_DIM_ESTUDIANTE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_TIPO_DOCUMENTO]"
+                      dataType="wstr"
+                      length="5"
+                      name="STR_TIPO_DOCUMENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[INT_COD_DEPTO_PRESENTACION]"
+                      dataType="i4"
+                      name="INT_COD_DEPTO_PRESENTACION" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[INT_COD_MCPIO_PRESENTACION]"
+                      dataType="i4"
+                      name="INT_COD_MCPIO_PRESENTACION" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[COD_INT_RESIDE_DEPTO]"
+                      dataType="i4"
+                      name="COD_INT_RESIDE_DEPTO" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[INT_COD_RESIDE_MCPIO]"
+                      dataType="i4"
+                      name="INT_COD_RESIDE_MCPIO" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_DEPTO_PRESENTACION]"
+                      dataType="wstr"
+                      length="100"
+                      name="STR_DEPTO_PRESENTACION" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_DEPTO_RESIDE]"
+                      dataType="wstr"
+                      length="100"
+                      name="STR_DEPTO_RESIDE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_ES_ESTUDIANTE]"
+                      dataType="wstr"
+                      length="15"
+                      name="STR_ES_ESTUDIANTE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_FECHA_NACIMIENTO]"
+                      dataType="dbTimeStamp"
+                      name="STR_FECHA_NACIMIENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_GENERO]"
+                      dataType="wstr"
+                      length="10"
+                      name="STR_GENERO" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_MCPIO_PRESENTACION]"
+                      dataType="wstr"
+                      length="100"
+                      name="STR_MCPIO_PRESENTACION" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_MCPIO_RESIDE]"
+                      dataType="wstr"
+                      length="100"
+                      name="STR_MCPIO_RESIDE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_NACIONALIDAD]"
+                      dataType="wstr"
+                      length="100"
+                      name="STR_NACIONALIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_PAIS_RESIDE]"
+                      dataType="wstr"
+                      length="150"
+                      name="STR_PAIS_RESIDE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[STR_ES_PRIVADO_LIBERTAD]"
+                      dataType="wstr"
+                      length="2"
+                      name="STR_ES_PRIVADO_LIBERTAD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input].ExternalColumns[DT_FECHA_ACTUALIZACION]"
+                      dataType="dbTimeStamp"
+                      name="DT_FECHA_ACTUALIZACION" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Row Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Row Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::ESTUDIANTES_REPETIDOS</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Row Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Row Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Data Flow Task\Row Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="TBL_RESULTADOS_SABER_11"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT STR_TIPO_DOCUMENTO AS STR_TIPO_DOCUMENTO,
+ INT_ESTU_COD_DEPTO_PRESENTACION AS INT_COD_DEPTO_PRESENTACION,
+ INT_ESTU_COD_MCPIO_PRESENTACION AS INT_COD_MCPIO_PRESENTACION,
+ INT_ESTU_COD_RESIDE_DEPTO AS COD_INT_RESIDE_DEPTO,
+ INT_ESTU_COD_RESIDE_MCPIO AS INT_COD_RESIDE_MCPIO,
+ STR_ESTU_DEPTO_PRESENTACION AS STR_DEPTO_PRESENTACION,
+ STR_ESTU_DEPTO_RESIDE AS STR_DEPTO_RESIDE,
+ STR_ESTU_ESTUDIANTE AS STR_ES_ESTUDIANTE,
+ CONVERT(VARCHAR,STR_ESTU_FECHANACIMIENTO, 101) AS STR_FECHA_NACIMIENTO,
+ STR_ESTU_GENERO AS STR_GENERO,
+ STR_ESTU_MCPIO_PRESENTACION AS STR_MCPIO_PRESENTACION,
+ STR_ESTU_MCPIO_RESIDE AS STR_MCPIO_RESIDE,
+ STR_ESTU_NACIONALIDAD AS STR_NACIONALIDAD,
+ STR_ESTU_PAIS_RESIDE AS STR_PAIS_RESIDE,
+ STR_ESTU_PRIVADO_LIBERTAD AS STR_ES_PRIVADO_LIBERTAD
+ FROM DBO.RESULTADOS_SABER_11;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Connections[OleDbConnection]"
+                  connectionManagerID="{00B4DFE2-2EED-4993-AD87-4CE661A08CD3}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[STAGE_UPTC]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_TIPO_DOCUMENTO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_TIPO_DOCUMENTO]"
+                      length="5"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_TIPO_DOCUMENTO]"
+                      name="STR_TIPO_DOCUMENTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[INT_COD_DEPTO_PRESENTACION]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[INT_COD_DEPTO_PRESENTACION]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[INT_COD_DEPTO_PRESENTACION]"
+                      name="INT_COD_DEPTO_PRESENTACION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[INT_COD_MCPIO_PRESENTACION]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[INT_COD_MCPIO_PRESENTACION]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[INT_COD_MCPIO_PRESENTACION]"
+                      name="INT_COD_MCPIO_PRESENTACION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[COD_INT_RESIDE_DEPTO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[COD_INT_RESIDE_DEPTO]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[COD_INT_RESIDE_DEPTO]"
+                      name="COD_INT_RESIDE_DEPTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[INT_COD_RESIDE_MCPIO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[INT_COD_RESIDE_MCPIO]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[INT_COD_RESIDE_MCPIO]"
+                      name="INT_COD_RESIDE_MCPIO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_DEPTO_PRESENTACION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_DEPTO_PRESENTACION]"
+                      length="100"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_DEPTO_PRESENTACION]"
+                      name="STR_DEPTO_PRESENTACION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_DEPTO_RESIDE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_DEPTO_RESIDE]"
+                      length="100"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_DEPTO_RESIDE]"
+                      name="STR_DEPTO_RESIDE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_ES_ESTUDIANTE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_ES_ESTUDIANTE]"
+                      length="15"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_ES_ESTUDIANTE]"
+                      name="STR_ES_ESTUDIANTE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_FECHA_NACIMIENTO]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_FECHA_NACIMIENTO]"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_FECHA_NACIMIENTO]"
+                      name="STR_FECHA_NACIMIENTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_GENERO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_GENERO]"
+                      length="2"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_GENERO]"
+                      name="STR_GENERO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_MCPIO_PRESENTACION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_MCPIO_PRESENTACION]"
+                      length="150"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_MCPIO_PRESENTACION]"
+                      name="STR_MCPIO_PRESENTACION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_MCPIO_RESIDE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_MCPIO_RESIDE]"
+                      length="150"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_MCPIO_RESIDE]"
+                      name="STR_MCPIO_RESIDE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_NACIONALIDAD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_NACIONALIDAD]"
+                      length="150"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_NACIONALIDAD]"
+                      name="STR_NACIONALIDAD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_PAIS_RESIDE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_PAIS_RESIDE]"
+                      length="150"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_PAIS_RESIDE]"
+                      name="STR_PAIS_RESIDE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_ES_PRIVADO_LIBERTAD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_ES_PRIVADO_LIBERTAD]"
+                      length="2"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[STR_ES_PRIVADO_LIBERTAD]"
+                      name="STR_ES_PRIVADO_LIBERTAD"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_TIPO_DOCUMENTO]"
+                      dataType="wstr"
+                      length="5"
+                      name="STR_TIPO_DOCUMENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[INT_COD_DEPTO_PRESENTACION]"
+                      dataType="i4"
+                      name="INT_COD_DEPTO_PRESENTACION" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[INT_COD_MCPIO_PRESENTACION]"
+                      dataType="i4"
+                      name="INT_COD_MCPIO_PRESENTACION" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[COD_INT_RESIDE_DEPTO]"
+                      dataType="i4"
+                      name="COD_INT_RESIDE_DEPTO" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[INT_COD_RESIDE_MCPIO]"
+                      dataType="i4"
+                      name="INT_COD_RESIDE_MCPIO" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_DEPTO_PRESENTACION]"
+                      dataType="wstr"
+                      length="100"
+                      name="STR_DEPTO_PRESENTACION" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_DEPTO_RESIDE]"
+                      dataType="wstr"
+                      length="100"
+                      name="STR_DEPTO_RESIDE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_ES_ESTUDIANTE]"
+                      dataType="wstr"
+                      length="15"
+                      name="STR_ES_ESTUDIANTE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_FECHA_NACIMIENTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="STR_FECHA_NACIMIENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_GENERO]"
+                      dataType="wstr"
+                      length="2"
+                      name="STR_GENERO" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_MCPIO_PRESENTACION]"
+                      dataType="wstr"
+                      length="150"
+                      name="STR_MCPIO_PRESENTACION" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_MCPIO_RESIDE]"
+                      dataType="wstr"
+                      length="150"
+                      name="STR_MCPIO_RESIDE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_NACIONALIDAD]"
+                      dataType="wstr"
+                      length="150"
+                      name="STR_NACIONALIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_PAIS_RESIDE]"
+                      dataType="wstr"
+                      length="150"
+                      name="STR_PAIS_RESIDE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[STR_ES_PRIVADO_LIBERTAD]"
+                      dataType="wstr"
+                      length="2"
+                      name="STR_ES_PRIVADO_LIBERTAD" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_TIPO_DOCUMENTO]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_TIPO_DOCUMENTO]"
+                      name="STR_TIPO_DOCUMENTO" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[INT_COD_DEPTO_PRESENTACION]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[INT_COD_DEPTO_PRESENTACION]"
+                      name="INT_COD_DEPTO_PRESENTACION" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[INT_COD_MCPIO_PRESENTACION]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[INT_COD_MCPIO_PRESENTACION]"
+                      name="INT_COD_MCPIO_PRESENTACION" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[COD_INT_RESIDE_DEPTO]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[COD_INT_RESIDE_DEPTO]"
+                      name="COD_INT_RESIDE_DEPTO" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[INT_COD_RESIDE_MCPIO]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[INT_COD_RESIDE_MCPIO]"
+                      name="INT_COD_RESIDE_MCPIO" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_DEPTO_PRESENTACION]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_DEPTO_PRESENTACION]"
+                      name="STR_DEPTO_PRESENTACION" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_DEPTO_RESIDE]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_DEPTO_RESIDE]"
+                      name="STR_DEPTO_RESIDE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_ES_ESTUDIANTE]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_ES_ESTUDIANTE]"
+                      name="STR_ES_ESTUDIANTE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_FECHA_NACIMIENTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_FECHA_NACIMIENTO]"
+                      name="STR_FECHA_NACIMIENTO" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_GENERO]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_GENERO]"
+                      name="STR_GENERO" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_MCPIO_PRESENTACION]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_MCPIO_PRESENTACION]"
+                      name="STR_MCPIO_PRESENTACION" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_MCPIO_RESIDE]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_MCPIO_RESIDE]"
+                      name="STR_MCPIO_RESIDE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_NACIONALIDAD]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_NACIONALIDAD]"
+                      name="STR_NACIONALIDAD" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_PAIS_RESIDE]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_PAIS_RESIDE]"
+                      name="STR_PAIS_RESIDE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_ES_PRIVADO_LIBERTAD]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[STR_ES_PRIVADO_LIBERTAD]"
+                      name="STR_ES_PRIVADO_LIBERTAD" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Derived Column Output]"
+              endId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Lookup Match Output]"
+              endId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow Task\LKP_DIM_ESTUDIANTES.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[NUEVO]"
+              endId="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES.Inputs[OLE DB Destination Input]"
+              name="NUEVO"
+              startId="Package\Data Flow Task\Conditional Split.Outputs[NUEVO]" />
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[REPETIDO]"
+              endId="Package\Data Flow Task\Row Count.Inputs[Row Count Input 1]"
+              name="REPETIDO"
+              startId="Package\Data Flow Task\Conditional Split.Outputs[REPETIDO]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Data Flow Task"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\Data Flow Task\Derived Column"
+          TopLeft="184.857142565202,85.5882348115056" />
+        <NodeLayout
+          Size="220.8,41.6"
+          Id="Package\Data Flow Task\TBL_RESULTADOS_SABER_11"
+          TopLeft="154.99999991485,17.8823526730587" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="263.328571240026,59.4823526730587">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26.1058821384469"
+              Start="0,0"
+              End="0,18.6058821384469">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.6058821384469" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="195.2,41.6"
+          Id="Package\Data Flow Task\LKP_DIM_ESTUDIANTES"
+          TopLeft="169.285717168633,157.529413973996" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="264.071429866917,127.188234811506">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.3411791624908"
+              Start="0,0"
+              End="0,22.8411791624908">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.8411791624908" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\Data Flow Task\Conditional Split"
+          TopLeft="192.142860415031,247.764709357159" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup Match Output]"
+          TopLeft="268.114288791832,199.129413973996">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.6352953831631"
+              Start="0,0"
+              End="0,41.1352953831631">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.1352953831631" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,14.7629601915815,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\Data Flow Task\Row Count"
+          TopLeft="424.285721511257,248.164708263239" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[REPETIDO]"
+          TopLeft="346.542860415031,268.764708810199">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="77.7428610962263,0"
+              Start="0,0"
+              End="70.2428610962263,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="70.2428610962263,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="11.4686180481132,5,47.305625,9.5732421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="216,41.6"
+          Id="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES"
+          TopLeft="168.571431442183,339.529416526478" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[NUEVO]"
+          TopLeft="272.957145928607,289.364709357159">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50.1647071693181"
+              Start="0,0"
+              End="0,42.6647071693181">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.6647071693181" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-16.4128125,16.5457324909091,32.825625,9.5732421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\TBL_RESULTADOS_SABER_11">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\LKP_DIM_ESTUDIANTES">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLE_DB_DIM_ESTUDIANTES">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

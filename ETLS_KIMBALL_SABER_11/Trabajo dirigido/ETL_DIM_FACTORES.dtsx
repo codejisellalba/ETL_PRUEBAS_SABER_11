@@ -1,0 +1,1986 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/2/2023 8:11:05 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-TM2C912"
+  DTS:CreatorName="DESKTOP-TM2C912\pc"
+  DTS:DTSID="{EF59C2DB-5034-4981-84CE-1B441F9A0F2F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5035.3"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ETL_DIM_FACTORES"
+  DTS:PackageType="5"
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{3BA2D726-08B9-4D94-B850-6A107799A728}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{60401817-E494-462D-974E-4DEC0CED88A3}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="COLEGIOS_REPETIDOS">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4973F9E0-D314-46B6-9105-027D67FCCAE7}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ESTUDIANTES_REPETIDOS">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_DIM_FACTORES"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{933BBF2C-64E2-4610-A7B9-C7E7D998A868}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_DIM_FACTORES">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_DIM_FACTORES\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_DIM_FACTORES\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Conditional Split.Inputs[Conditional Split Input].Columns[SK_DIM_FACTORES_D]"
+                      cachedDataType="i4"
+                      cachedName="SK_DIM_FACTORES_D"
+                      lineageId="Package\DFT_DIM_FACTORES\Lookup.Outputs[Lookup Match Output].Columns[SK_DIM_FACTORES_D]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_DIM_FACTORES\Conditional Split.Outputs[NUEVO]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="NUEVO"
+                  synchronousInputId="Package\DFT_DIM_FACTORES\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\DFT_DIM_FACTORES\Lookup.Outputs[Lookup Match Output].Columns[SK_DIM_FACTORES_D]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(SK_DIM_FACTORES_D)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_DIM_FACTORES\Conditional Split.Outputs[REPETIDO]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="REPETIDO"
+                  synchronousInputId="Package\DFT_DIM_FACTORES\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_DIM_FACTORES\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\DFT_DIM_FACTORES\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_FACTORES\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_FACTORES\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_DIM_FACTORES\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_DIM_FACTORES\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Derived Column.Inputs[Derived Column Input].Columns[CUARTOS_HOGAR]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="CUARTOS_HOGAR"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[CUARTOS_HOGAR]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Derived Column.Inputs[Derived Column Input].Columns[EDUCACION_MADRE]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="EDUCACION_MADRE"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[EDUCACION_MADRE]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Derived Column.Inputs[Derived Column Input].Columns[EDUCACION_PADRE]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="EDUCACION_PADRE"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[EDUCACION_PADRE]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Derived Column.Inputs[Derived Column Input].Columns[ESTRATO_VIVIENDA]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="ESTRATO_VIVIENDA"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[ESTRATO_VIVIENDA]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Derived Column.Inputs[Derived Column Input].Columns[PERSONAS_HOGAR]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="PERSONAS_HOGAR"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[PERSONAS_HOGAR]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Derived Column.Inputs[Derived Column Input].Columns[FAMI_TIENE_AUTOMOVIL]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMI_TIENE_AUTOMOVIL"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_AUTOMOVIL]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Derived Column.Inputs[Derived Column Input].Columns[FAMI_TIENE_COMPUTADOR]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMI_TIENE_COMPUTADOR"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_COMPUTADOR]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Derived Column.Inputs[Derived Column Input].Columns[FAMI_TIENE_INTERNET]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMI_TIENE_INTERNET"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_INTERNET]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Derived Column.Inputs[Derived Column Input].Columns[FAMI_TIENE_LAVADORA]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMI_TIENE_LAVADORA"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_LAVADORA]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_DIM_FACTORES\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT_DIM_FACTORES\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\Derived Column.Outputs[Derived Column Output].Columns[LLAVE_DIM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="338"
+                      lineageId="Package\DFT_DIM_FACTORES\Derived Column.Outputs[Derived Column Output].Columns[LLAVE_DIM]"
+                      name="LLAVE_DIM"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_LAVADORA]} + #{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_INTERNET]} + #{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_COMPUTADOR]} + #{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_AUTOMOVIL]} + #{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[PERSONAS_HOGAR]} + #{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[ESTRATO_VIVIENDA]} + #{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[EDUCACION_PADRE]} + #{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[EDUCACION_MADRE]} + #{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[CUARTOS_HOGAR]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">FAMI_TIENE_LAVADORA + FAMI_TIENE_INTERNET + FAMI_TIENE_COMPUTADOR + FAMI_TIENE_AUTOMOVIL + PERSONAS_HOGAR + ESTRATO_VIVIENDA + EDUCACION_PADRE + EDUCACION_MADRE + CUARTOS_HOGAR</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\Derived Column.Outputs[Derived Column Output].Columns[DT_FECHA_ACTUALIZACION]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT_DIM_FACTORES\Derived Column.Outputs[Derived Column Output].Columns[DT_FECHA_ACTUALIZACION]"
+                      name="DT_FECHA_ACTUALIZACION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_DIM_FACTORES\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT_DIM_FACTORES\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_FACTORES\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_FACTORES\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_DIM_FACTORES\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [SK_DIM_FACTORES]
+      ,CONCAT([CUARTOS_HOGAR]
+      ,[EDUCACION_MADRE]
+      ,[EDUCACION_PADRE]
+      ,[ESTRATO_VIVIENDA]
+      ,[PERSONAS_HOGAR]
+      ,[FAMI_TIENE_AUTOMOVIL]
+      ,[FAMI_TIENE_COMPUTADOR]
+      ,[FAMI_TIENE_INTERNET]
+      ,[FAMI_TIENE_LAVADORA]
+      ,[DT_FECHA_ACTUALIZACION]) AS LLAVE
+  FROM [DWH_UPTC].[dbo].[DIM_FACTORES_SOCIECONOMICOS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT [SK_DIM_FACTORES]
+      ,CONCAT([CUARTOS_HOGAR]
+      ,[EDUCACION_MADRE]
+      ,[EDUCACION_PADRE]
+      ,[ESTRATO_VIVIENDA]
+      ,[PERSONAS_HOGAR]
+      ,[FAMI_TIENE_AUTOMOVIL]
+      ,[FAMI_TIENE_COMPUTADOR]
+      ,[FAMI_TIENE_INTERNET]
+      ,[FAMI_TIENE_LAVADORA]
+      ,[DT_FECHA_ACTUALIZACION]) AS LLAVE
+  FROM [DWH_UPTC].[dbo].[DIM_FACTORES_SOCIECONOMICOS]) [refTable]
+where [refTable].[LLAVE] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SK_DIM_FACTORES" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LLAVE" dataType="DT_WSTR" length="378" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_DIM_FACTORES\Derived Column.Outputs[Derived Column Output].Columns[LLAVE_DIM]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_DIM_FACTORES\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="{B40470B4-2D69-4663-8E51-D47A16AC5D76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_UPTC]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_DIM_FACTORES\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Lookup.Inputs[Lookup Input].Columns[LLAVE_DIM]"
+                      cachedDataType="wstr"
+                      cachedLength="338"
+                      cachedName="LLAVE_DIM"
+                      lineageId="Package\DFT_DIM_FACTORES\Derived Column.Outputs[Derived Column Output].Columns[LLAVE_DIM]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">LLAVE</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_DIM_FACTORES\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_DIM_FACTORES\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\Lookup.Outputs[Lookup Match Output].Columns[SK_DIM_FACTORES_D]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_DIM_FACTORES\Lookup.Outputs[Lookup Match Output].Columns[SK_DIM_FACTORES_D]"
+                      name="SK_DIM_FACTORES_D"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SK_DIM_FACTORES</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_DIM_FACTORES\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_DIM_FACTORES\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_DIM_FACTORES\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_DIM_FACTORES\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_FACTORES\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_FACTORES\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_DIM_FACTORES\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DIM_FACTORES_SOCIECONOMICOS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{B40470B4-2D69-4663-8E51-D47A16AC5D76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_UPTC]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CUARTOS_HOGAR]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="CUARTOS_HOGAR"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CUARTOS_HOGAR]"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[CUARTOS_HOGAR]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EDUCACION_MADRE]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="EDUCACION_MADRE"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EDUCACION_MADRE]"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[EDUCACION_MADRE]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EDUCACION_PADRE]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="EDUCACION_PADRE"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EDUCACION_PADRE]"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[EDUCACION_PADRE]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ESTRATO_VIVIENDA]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="ESTRATO_VIVIENDA"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ESTRATO_VIVIENDA]"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[ESTRATO_VIVIENDA]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PERSONAS_HOGAR]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="PERSONAS_HOGAR"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PERSONAS_HOGAR]"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[PERSONAS_HOGAR]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FAMI_TIENE_AUTOMOVIL]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMI_TIENE_AUTOMOVIL"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FAMI_TIENE_AUTOMOVIL]"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_AUTOMOVIL]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FAMI_TIENE_COMPUTADOR]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMI_TIENE_COMPUTADOR"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FAMI_TIENE_COMPUTADOR]"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_COMPUTADOR]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FAMI_TIENE_INTERNET]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMI_TIENE_INTERNET"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FAMI_TIENE_INTERNET]"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_INTERNET]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FAMI_TIENE_LAVADORA]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMI_TIENE_LAVADORA"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FAMI_TIENE_LAVADORA]"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_LAVADORA]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DT_FECHA_ACTUALIZACION]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DT_FECHA_ACTUALIZACION"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DT_FECHA_ACTUALIZACION]"
+                      lineageId="Package\DFT_DIM_FACTORES\Derived Column.Outputs[Derived Column Output].Columns[DT_FECHA_ACTUALIZACION]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SK_DIM_FACTORES]"
+                      dataType="i4"
+                      name="SK_DIM_FACTORES" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CUARTOS_HOGAR]"
+                      dataType="wstr"
+                      length="10"
+                      name="CUARTOS_HOGAR" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EDUCACION_MADRE]"
+                      dataType="wstr"
+                      length="150"
+                      name="EDUCACION_MADRE" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EDUCACION_PADRE]"
+                      dataType="wstr"
+                      length="150"
+                      name="EDUCACION_PADRE" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ESTRATO_VIVIENDA]"
+                      dataType="wstr"
+                      length="10"
+                      name="ESTRATO_VIVIENDA" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PERSONAS_HOGAR]"
+                      dataType="wstr"
+                      length="10"
+                      name="PERSONAS_HOGAR" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FAMI_TIENE_AUTOMOVIL]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMI_TIENE_AUTOMOVIL" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FAMI_TIENE_COMPUTADOR]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMI_TIENE_COMPUTADOR" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FAMI_TIENE_INTERNET]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMI_TIENE_INTERNET" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FAMI_TIENE_LAVADORA]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMI_TIENE_LAVADORA" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DT_FECHA_ACTUALIZACION]"
+                      dataType="dbTimeStamp"
+                      name="DT_FECHA_ACTUALIZACION" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_DIM_FACTORES\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT
+  CAST('N/A' AS NVARCHAR(10)) AS CUARTOS_HOGAR,
+  CAST('N/A' AS NVARCHAR(150)) AS EDUCACION_MADRE,
+  CAST('N/A' AS NVARCHAR(150)) AS EDUCACION_PADRE,
+  CAST('N/A' AS NVARCHAR(10)) AS ESTRATO_VIVIENDA,
+  CAST('N/A' AS NVARCHAR(10)) AS PERSONAS_HOGAR,
+  CAST('N/A' AS NVARCHAR(2)) AS FAMI_TIENE_AUTOMOVIL,
+  CAST('N/A' AS NVARCHAR(2)) AS FAMI_TIENE_COMPUTADOR,
+  CAST('N/A' AS NVARCHAR(2)) AS FAMI_TIENE_INTERNET,
+  CAST('N/A' AS NVARCHAR(2)) AS FAMI_TIENE_LAVADORA
+FROM dbo.RESULTADOS_SABER_11</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_DIM_FACTORES\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{00B4DFE2-2EED-4993-AD87-4CE661A08CD3}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[STAGE_UPTC]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[CUARTOS_HOGAR]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CUARTOS_HOGAR]"
+                      length="10"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[CUARTOS_HOGAR]"
+                      name="CUARTOS_HOGAR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[EDUCACION_MADRE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EDUCACION_MADRE]"
+                      length="150"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[EDUCACION_MADRE]"
+                      name="EDUCACION_MADRE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[EDUCACION_PADRE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EDUCACION_PADRE]"
+                      length="150"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[EDUCACION_PADRE]"
+                      name="EDUCACION_PADRE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[ESTRATO_VIVIENDA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ESTRATO_VIVIENDA]"
+                      length="10"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[ESTRATO_VIVIENDA]"
+                      name="ESTRATO_VIVIENDA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[PERSONAS_HOGAR]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PERSONAS_HOGAR]"
+                      length="10"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[PERSONAS_HOGAR]"
+                      name="PERSONAS_HOGAR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_AUTOMOVIL]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FAMI_TIENE_AUTOMOVIL]"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_AUTOMOVIL]"
+                      name="FAMI_TIENE_AUTOMOVIL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_COMPUTADOR]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FAMI_TIENE_COMPUTADOR]"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_COMPUTADOR]"
+                      name="FAMI_TIENE_COMPUTADOR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_INTERNET]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FAMI_TIENE_INTERNET]"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_INTERNET]"
+                      name="FAMI_TIENE_INTERNET"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_LAVADORA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FAMI_TIENE_LAVADORA]"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_LAVADORA]"
+                      name="FAMI_TIENE_LAVADORA"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CUARTOS_HOGAR]"
+                      dataType="wstr"
+                      length="10"
+                      name="CUARTOS_HOGAR" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EDUCACION_MADRE]"
+                      dataType="wstr"
+                      length="150"
+                      name="EDUCACION_MADRE" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EDUCACION_PADRE]"
+                      dataType="wstr"
+                      length="150"
+                      name="EDUCACION_PADRE" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ESTRATO_VIVIENDA]"
+                      dataType="wstr"
+                      length="10"
+                      name="ESTRATO_VIVIENDA" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PERSONAS_HOGAR]"
+                      dataType="wstr"
+                      length="10"
+                      name="PERSONAS_HOGAR" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FAMI_TIENE_AUTOMOVIL]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMI_TIENE_AUTOMOVIL" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FAMI_TIENE_COMPUTADOR]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMI_TIENE_COMPUTADOR" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FAMI_TIENE_INTERNET]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMI_TIENE_INTERNET" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FAMI_TIENE_LAVADORA]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMI_TIENE_LAVADORA" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CUARTOS_HOGAR]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CUARTOS_HOGAR]"
+                      name="CUARTOS_HOGAR" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EDUCACION_MADRE]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EDUCACION_MADRE]"
+                      name="EDUCACION_MADRE" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EDUCACION_PADRE]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EDUCACION_PADRE]"
+                      name="EDUCACION_PADRE" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ESTRATO_VIVIENDA]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ESTRATO_VIVIENDA]"
+                      name="ESTRATO_VIVIENDA" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PERSONAS_HOGAR]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PERSONAS_HOGAR]"
+                      name="PERSONAS_HOGAR" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FAMI_TIENE_AUTOMOVIL]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FAMI_TIENE_AUTOMOVIL]"
+                      name="FAMI_TIENE_AUTOMOVIL" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FAMI_TIENE_COMPUTADOR]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FAMI_TIENE_COMPUTADOR]"
+                      name="FAMI_TIENE_COMPUTADOR" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FAMI_TIENE_INTERNET]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FAMI_TIENE_INTERNET]"
+                      name="FAMI_TIENE_INTERNET" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FAMI_TIENE_LAVADORA]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FAMI_TIENE_LAVADORA]"
+                      name="FAMI_TIENE_LAVADORA" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_DIM_FACTORES\Row Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Row Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::COLEGIOS_REPETIDOS</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_DIM_FACTORES\Row Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_DIM_FACTORES\Row Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT_DIM_FACTORES\Row Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="TBL_RESULTADOS_SABER_11"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT STR_FAMI_CUARTOS_HOGAR AS CUARTOS_HOGAR,
+	STR_FAMI_EDUCACION_MADRE AS EDUCACION_MADRE,
+	STR_FAMI_EDUCACION_PADRE AS EDUCACION_PADRE,
+	STR_FAMI_ESTRATO_VIVIENDA AS ESTRATO_VIVIENDA,
+	STR_FAMI_PERSONAS_HOGAR AS PERSONAS_HOGAR,
+	STR_FAMI_TIENE_AUTOMOVIL AS FAMI_TIENE_AUTOMOVIL,
+	STR_FAMI_TIENE_COMPUTADOR AS FAMI_TIENE_COMPUTADOR,
+	STR_FAMI_TIENE_INTERNET AS FAMI_TIENE_INTERNET,
+	STR_FAMI_TIENE_LAVADORA AS FAMI_TIENE_LAVADORA
+ FROM DBO.RESULTADOS_SABER_11;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Connections[OleDbConnection]"
+                  connectionManagerID="{00B4DFE2-2EED-4993-AD87-4CE661A08CD3}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[STAGE_UPTC]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[CUARTOS_HOGAR]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[CUARTOS_HOGAR]"
+                      length="10"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[CUARTOS_HOGAR]"
+                      name="CUARTOS_HOGAR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[EDUCACION_MADRE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[EDUCACION_MADRE]"
+                      length="150"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[EDUCACION_MADRE]"
+                      name="EDUCACION_MADRE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[EDUCACION_PADRE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[EDUCACION_PADRE]"
+                      length="150"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[EDUCACION_PADRE]"
+                      name="EDUCACION_PADRE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[ESTRATO_VIVIENDA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[ESTRATO_VIVIENDA]"
+                      length="10"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[ESTRATO_VIVIENDA]"
+                      name="ESTRATO_VIVIENDA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[PERSONAS_HOGAR]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[PERSONAS_HOGAR]"
+                      length="10"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[PERSONAS_HOGAR]"
+                      name="PERSONAS_HOGAR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_AUTOMOVIL]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[FAMI_TIENE_AUTOMOVIL]"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_AUTOMOVIL]"
+                      name="FAMI_TIENE_AUTOMOVIL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_COMPUTADOR]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[FAMI_TIENE_COMPUTADOR]"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_COMPUTADOR]"
+                      name="FAMI_TIENE_COMPUTADOR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_INTERNET]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[FAMI_TIENE_INTERNET]"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_INTERNET]"
+                      name="FAMI_TIENE_INTERNET"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_LAVADORA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[FAMI_TIENE_LAVADORA]"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_LAVADORA]"
+                      name="FAMI_TIENE_LAVADORA"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[CUARTOS_HOGAR]"
+                      dataType="wstr"
+                      length="10"
+                      name="CUARTOS_HOGAR" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[EDUCACION_MADRE]"
+                      dataType="wstr"
+                      length="150"
+                      name="EDUCACION_MADRE" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[EDUCACION_PADRE]"
+                      dataType="wstr"
+                      length="150"
+                      name="EDUCACION_PADRE" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[ESTRATO_VIVIENDA]"
+                      dataType="wstr"
+                      length="10"
+                      name="ESTRATO_VIVIENDA" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[PERSONAS_HOGAR]"
+                      dataType="wstr"
+                      length="10"
+                      name="PERSONAS_HOGAR" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[FAMI_TIENE_AUTOMOVIL]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMI_TIENE_AUTOMOVIL" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[FAMI_TIENE_COMPUTADOR]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMI_TIENE_COMPUTADOR" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[FAMI_TIENE_INTERNET]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMI_TIENE_INTERNET" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[FAMI_TIENE_LAVADORA]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMI_TIENE_LAVADORA" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[CUARTOS_HOGAR]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[CUARTOS_HOGAR]"
+                      name="CUARTOS_HOGAR" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[EDUCACION_MADRE]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[EDUCACION_MADRE]"
+                      name="EDUCACION_MADRE" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[EDUCACION_PADRE]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[EDUCACION_PADRE]"
+                      name="EDUCACION_PADRE" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[ESTRATO_VIVIENDA]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[ESTRATO_VIVIENDA]"
+                      name="ESTRATO_VIVIENDA" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[PERSONAS_HOGAR]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[PERSONAS_HOGAR]"
+                      name="PERSONAS_HOGAR" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[FAMI_TIENE_AUTOMOVIL]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[FAMI_TIENE_AUTOMOVIL]"
+                      name="FAMI_TIENE_AUTOMOVIL" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[FAMI_TIENE_COMPUTADOR]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[FAMI_TIENE_COMPUTADOR]"
+                      name="FAMI_TIENE_COMPUTADOR" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[FAMI_TIENE_INTERNET]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[FAMI_TIENE_INTERNET]"
+                      name="FAMI_TIENE_INTERNET" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[FAMI_TIENE_LAVADORA]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[FAMI_TIENE_LAVADORA]"
+                      name="FAMI_TIENE_LAVADORA" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_DIM_FACTORES\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 1].Columns[CUARTOS_HOGAR]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="CUARTOS_HOGAR"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[CUARTOS_HOGAR]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[CUARTOS_HOGAR]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 1].Columns[EDUCACION_MADRE]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="EDUCACION_MADRE"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[EDUCACION_MADRE]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[EDUCACION_MADRE]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 1].Columns[EDUCACION_PADRE]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="EDUCACION_PADRE"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[EDUCACION_PADRE]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[EDUCACION_PADRE]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 1].Columns[ESTRATO_VIVIENDA]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="ESTRATO_VIVIENDA"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[ESTRATO_VIVIENDA]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[ESTRATO_VIVIENDA]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 1].Columns[PERSONAS_HOGAR]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="PERSONAS_HOGAR"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[PERSONAS_HOGAR]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[PERSONAS_HOGAR]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 1].Columns[FAMI_TIENE_AUTOMOVIL]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMI_TIENE_AUTOMOVIL"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_AUTOMOVIL]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_AUTOMOVIL]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 1].Columns[FAMI_TIENE_COMPUTADOR]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMI_TIENE_COMPUTADOR"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_COMPUTADOR]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_COMPUTADOR]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 1].Columns[FAMI_TIENE_INTERNET]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMI_TIENE_INTERNET"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_INTERNET]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_INTERNET]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 1].Columns[FAMI_TIENE_LAVADORA]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMI_TIENE_LAVADORA"
+                      lineageId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_LAVADORA]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_LAVADORA]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 2].Columns[CUARTOS_HOGAR]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="CUARTOS_HOGAR"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[CUARTOS_HOGAR]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[CUARTOS_HOGAR]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 2].Columns[EDUCACION_MADRE]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="EDUCACION_MADRE"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[EDUCACION_MADRE]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[EDUCACION_MADRE]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 2].Columns[EDUCACION_PADRE]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="EDUCACION_PADRE"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[EDUCACION_PADRE]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[EDUCACION_PADRE]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 2].Columns[ESTRATO_VIVIENDA]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="ESTRATO_VIVIENDA"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[ESTRATO_VIVIENDA]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[ESTRATO_VIVIENDA]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 2].Columns[PERSONAS_HOGAR]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="PERSONAS_HOGAR"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[PERSONAS_HOGAR]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[PERSONAS_HOGAR]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 2].Columns[FAMI_TIENE_AUTOMOVIL]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMI_TIENE_AUTOMOVIL"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_AUTOMOVIL]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_AUTOMOVIL]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 2].Columns[FAMI_TIENE_COMPUTADOR]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMI_TIENE_COMPUTADOR"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_COMPUTADOR]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_COMPUTADOR]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 2].Columns[FAMI_TIENE_INTERNET]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMI_TIENE_INTERNET"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_INTERNET]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_INTERNET]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 2].Columns[FAMI_TIENE_LAVADORA]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMI_TIENE_LAVADORA"
+                      lineageId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[FAMI_TIENE_LAVADORA]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_LAVADORA]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[CUARTOS_HOGAR]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[CUARTOS_HOGAR]"
+                      name="CUARTOS_HOGAR" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[EDUCACION_MADRE]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[EDUCACION_MADRE]"
+                      name="EDUCACION_MADRE" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[EDUCACION_PADRE]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[EDUCACION_PADRE]"
+                      name="EDUCACION_PADRE" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[ESTRATO_VIVIENDA]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[ESTRATO_VIVIENDA]"
+                      name="ESTRATO_VIVIENDA" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[PERSONAS_HOGAR]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[PERSONAS_HOGAR]"
+                      name="PERSONAS_HOGAR" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_AUTOMOVIL]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_AUTOMOVIL]"
+                      name="FAMI_TIENE_AUTOMOVIL" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_COMPUTADOR]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_COMPUTADOR]"
+                      name="FAMI_TIENE_COMPUTADOR" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_INTERNET]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_INTERNET]"
+                      name="FAMI_TIENE_INTERNET" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_LAVADORA]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1].Columns[FAMI_TIENE_LAVADORA]"
+                      name="FAMI_TIENE_LAVADORA" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_DIM_FACTORES.Paths[Derived Column Output]"
+              endId="Package\DFT_DIM_FACTORES\Lookup.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\DFT_DIM_FACTORES\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT_DIM_FACTORES.Paths[Lookup Match Output]"
+              endId="Package\DFT_DIM_FACTORES\Conditional Split.Inputs[Conditional Split Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_DIM_FACTORES\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_DIM_FACTORES.Paths[NUEVO]"
+              endId="Package\DFT_DIM_FACTORES\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="NUEVO"
+              startId="Package\DFT_DIM_FACTORES\Conditional Split.Outputs[NUEVO]" />
+            <path
+              refId="Package\DFT_DIM_FACTORES.Paths[OLE DB Source Output]"
+              endId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 1]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_DIM_FACTORES\OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT_DIM_FACTORES.Paths[OLE DB Source Output1]"
+              endId="Package\DFT_DIM_FACTORES\Union All.Inputs[Union All Input 2]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT_DIM_FACTORES.Paths[REPETIDO]"
+              endId="Package\DFT_DIM_FACTORES\Row Count.Inputs[Row Count Input 1]"
+              name="REPETIDO"
+              startId="Package\DFT_DIM_FACTORES\Conditional Split.Outputs[REPETIDO]" />
+            <path
+              refId="Package\DFT_DIM_FACTORES.Paths[Union All Output 1]"
+              endId="Package\DFT_DIM_FACTORES\Derived Column.Inputs[Derived Column Input]"
+              name="Union All Output 1"
+              startId="Package\DFT_DIM_FACTORES\Union All.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="179.2,41.6"
+          Id="Package\DFT_DIM_FACTORES"
+          TopLeft="134.785716487437,237.205885602528" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_DIM_FACTORES">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\DFT_DIM_FACTORES\Derived Column"
+          TopLeft="195.00000332083,81.7142868602978" />
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\DFT_DIM_FACTORES\Row Count"
+          TopLeft="422.142864331907,242.702523312684" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\DFT_DIM_FACTORES\OLE DB Destination"
+          TopLeft="176.428574433132,323.361349072836" />
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\DFT_DIM_FACTORES\Conditional Split"
+          TopLeft="185.000003150531,236.949583155061" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\DFT_DIM_FACTORES\Lookup"
+          TopLeft="207.857146396929,154.361346702675" />
+        <NodeLayout
+          Size="220.8,41.6"
+          Id="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11"
+          TopLeft="162.14285717935,6.30252057788284" />
+        <EdgeLayout
+          Id="Package\DFT_DIM_FACTORES.Paths[REPETIDO]"
+          TopLeft="339.400003150531,260.626053233873">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="82.7428611813762,0"
+              Start="0,0"
+              End="75.2428611813762,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="75.2428611813762,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="13.9686180906881,5,47.305625,9.5732421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_DIM_FACTORES.Paths[NUEVO]"
+          TopLeft="261.914288791832,278.549583155061">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.8117659177748"
+              Start="0,0"
+              End="0,37.3117659177748">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.3117659177748" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-16.4128125,13.8692618651374,32.825625,9.5732421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_DIM_FACTORES.Paths[Lookup Match Output]"
+          TopLeft="263.22857477373,195.961346702675">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.9882364523864"
+              Start="0,0"
+              End="0,33.4882364523864">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.4882364523864" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,10.9394307261932,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_DIM_FACTORES.Paths[Derived Column Output]"
+          TopLeft="267.82857485888,123.314286860298">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.0470598423771"
+              Start="0,0"
+              End="0,23.5470598423771">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5470598423771" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\DFT_DIM_FACTORES\OLE DB Source"
+          TopLeft="552.959193090308,0.43697479604435" />
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\DFT_DIM_FACTORES\Union All"
+          TopLeft="410.204088618387,78.9831943850204" />
+        <EdgeLayout
+          Id="Package\DFT_DIM_FACTORES.Paths[OLE DB Source Output]"
+          TopLeft="627.759193090308,42.0369747960443">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-138.888437805254,36.946219588976"
+              Start="0,0"
+              End="-138.888437805254,29.446219588976">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.87605107242" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.87605107242"
+                    Point2="0,21.87605107242"
+                    Point3="-4,21.87605107242" />
+                  <mssgle:LineSegment
+                    End="-134.888437805254,21.87605107242" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-134.888437805254,21.87605107242"
+                    Point2="-138.888437805254,21.87605107242"
+                    Point3="-138.888437805254,25.87605107242" />
+                  <mssgle:LineSegment
+                    End="-138.888437805254,29.446219588976" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_DIM_FACTORES.Paths[OLE DB Source Output1]"
+          TopLeft="272.54285717935,47.9025205778828">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="178.994564772371,31.0806738071376"
+              Start="0,0"
+              End="178.994564772371,23.5806738071376">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.4030305436999" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.4030305436999"
+                    Point2="0,18.4030305436999"
+                    Point3="4,18.4030305436999" />
+                  <mssgle:LineSegment
+                    End="174.994564772371,18.4030305436999" />
+                  <mssgle:CubicBezierSegment
+                    Point1="174.994564772371,18.4030305436999"
+                    Point2="178.994564772371,18.4030305436999"
+                    Point3="178.994564772371,22.4030305436999" />
+                  <mssgle:LineSegment
+                    End="178.994564772371,23.5806738071376" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_DIM_FACTORES.Paths[Union All Output 1]"
+          TopLeft="410.204088618387,101.148740622659">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-62.4040852975572,0"
+              Start="0,0"
+              End="-54.9040852975572,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-54.9040852975572,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_DIM_FACTORES\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_DIM_FACTORES\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_DIM_FACTORES\TBL_RESULTADOS_SABER_11">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_DIM_FACTORES\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,1729 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/2/2023 8:11:05 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-TM2C912"
+  DTS:CreatorName="DESKTOP-TM2C912\pc"
+  DTS:DTSID="{C997065F-129F-46D1-AEF7-05C767A8A2D0}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5035.3"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ETL_DIM_RESULTADOS"
+  DTS:PackageType="5"
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{A507237D-A009-4654-9C71-21DF76E7FB3C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2DD745EF-7F6A-4E99-B9E6-D71C824BC1F9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="COLEGIOS_REPETIDOS">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{34D2F042-F564-4D39-A9F6-2A8E5817A724}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ESTUDIANTES_REPETIDOS">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_DIM_RESULTADOS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B3223D71-A0C6-4990-8532-13F92B944B68}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_DIM_RESULTADOS">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_DIM_RESULTADOS\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_DIM_RESULTADOS\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Conditional Split.Inputs[Conditional Split Input].Columns[SK_DIM_RESULTADOS_D]"
+                      cachedDataType="i4"
+                      cachedName="SK_DIM_RESULTADOS_D"
+                      lineageId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Outputs[Lookup Match Output].Columns[SK_DIM_RESULTADOS_D]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_DIM_RESULTADOS\Conditional Split.Outputs[NUEVO]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="NUEVO"
+                  synchronousInputId="Package\DFT_DIM_RESULTADOS\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Outputs[Lookup Match Output].Columns[SK_DIM_RESULTADOS_D]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(SK_DIM_RESULTADOS_D)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_DIM_RESULTADOS\Conditional Split.Outputs[REPETIDO]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="REPETIDO"
+                  synchronousInputId="Package\DFT_DIM_RESULTADOS\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_DIM_RESULTADOS\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\DFT_DIM_RESULTADOS\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_DIM_RESULTADOS\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_DIM_RESULTADOS\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Derived Column.Inputs[Derived Column Input].Columns[DESEMPENO_INGLES]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="DESEMPENO_INGLES"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[DESEMPENO_INGLES]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Derived Column.Inputs[Derived Column Input].Columns[PUNT_INGLES]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_INGLES"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_INGLES]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Derived Column.Inputs[Derived Column Input].Columns[PUNT_MATEMATICAS]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_MATEMATICAS"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_MATEMATICAS]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Derived Column.Inputs[Derived Column Input].Columns[PUNT_SOCIALES_CIUDADAS]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_SOCIALES_CIUDADAS"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_SOCIALES_CIUDADAS]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Derived Column.Inputs[Derived Column Input].Columns[PUNT_C_NATURALES]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_C_NATURALES"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_C_NATURALES]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Derived Column.Inputs[Derived Column Input].Columns[PUNT_LECTURA_CRITICA]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_LECTURA_CRITICA"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_LECTURA_CRITICA]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Derived Column.Inputs[Derived Column Input].Columns[INT_PUNT_GLOBAL]"
+                      cachedDataType="i4"
+                      cachedName="INT_PUNT_GLOBAL"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[INT_PUNT_GLOBAL]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_DIM_RESULTADOS\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT_DIM_RESULTADOS\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Derived Column.Outputs[Derived Column Output].Columns[LLAVE_DIM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="32"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Derived Column.Outputs[Derived Column Output].Columns[LLAVE_DIM]"
+                      name="LLAVE_DIM"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,5)#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[INT_PUNT_GLOBAL]} + (DT_WSTR,5)#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_LECTURA_CRITICA]} + (DT_WSTR,5)#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_C_NATURALES]} + (DT_WSTR,5)#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_SOCIALES_CIUDADAS]} + (DT_WSTR,5)#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_MATEMATICAS]} + (DT_WSTR,5)#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_INGLES]} + #{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[DESEMPENO_INGLES]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,5)INT_PUNT_GLOBAL + (DT_WSTR,5)PUNT_LECTURA_CRITICA + (DT_WSTR,5)PUNT_C_NATURALES + (DT_WSTR,5)PUNT_SOCIALES_CIUDADAS + (DT_WSTR,5)PUNT_MATEMATICAS + (DT_WSTR,5)PUNT_INGLES + DESEMPENO_INGLES</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Derived Column.Outputs[Derived Column Output].Columns[DT_FECHA_CARGA]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Derived Column.Outputs[Derived Column Output].Columns[DT_FECHA_CARGA]"
+                      name="DT_FECHA_CARGA"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_DIM_RESULTADOS\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT_DIM_RESULTADOS\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_DIM_RESULTADOS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [SK_DIM_RESULTADOS],
+		CONCAT(
+		[DESEMPENO_INGLES]
+      ,[PUNT_INGLES]
+      ,[PUNT_MATEMATICAS]
+      ,[PUNT_SOCIALES_CIUDADAS]
+      ,[PUNT_C_NATURALES]
+,[PUNT_LECTURA_CRITICA]
+      ,[INT_PUNT_GLOBAL]
+      ,[DT_FECHA_ACTUALIZACION]) AS LLAVE
+  FROM [DWH_UPTC].[dbo].[DIM_RESULTADOS];</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT [SK_DIM_RESULTADOS],
+		CONCAT(
+		[DESEMPENO_INGLES]
+      ,[PUNT_INGLES]
+      ,[PUNT_MATEMATICAS]
+      ,[PUNT_SOCIALES_CIUDADAS]
+      ,[PUNT_C_NATURALES]
+,[PUNT_LECTURA_CRITICA]
+      ,[INT_PUNT_GLOBAL]
+      ,[DT_FECHA_ACTUALIZACION]) AS LLAVE
+  FROM [DWH_UPTC].[dbo].[DIM_RESULTADOS];) [refTable]
+where [refTable].[LLAVE] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SK_DIM_RESULTADOS" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LLAVE" dataType="DT_WSTR" length="114" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_DIM_RESULTADOS\Derived Column.Outputs[Derived Column Output].Columns[LLAVE_DIM]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Connections[OleDbConnection]"
+                  connectionManagerID="{B40470B4-2D69-4663-8E51-D47A16AC5D76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_UPTC]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Inputs[Lookup Input].Columns[LLAVE_DIM]"
+                      cachedDataType="wstr"
+                      cachedLength="32"
+                      cachedName="LLAVE_DIM"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Derived Column.Outputs[Derived Column Output].Columns[LLAVE_DIM]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">LLAVE</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Outputs[Lookup Match Output].Columns[SK_DIM_RESULTADOS_D]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Outputs[Lookup Match Output].Columns[SK_DIM_RESULTADOS_D]"
+                      name="SK_DIM_RESULTADOS_D"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SK_DIM_RESULTADOS</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DIM_RESULTADOS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{B40470B4-2D69-4663-8E51-D47A16AC5D76}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_UPTC]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DESEMPENO_INGLES]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="DESEMPENO_INGLES"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DESEMPENO_INGLES]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[DESEMPENO_INGLES]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PUNT_INGLES]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_INGLES"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PUNT_INGLES]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_INGLES]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PUNT_MATEMATICAS]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_MATEMATICAS"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PUNT_MATEMATICAS]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_MATEMATICAS]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PUNT_SOCIALES_CIUDADAS]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_SOCIALES_CIUDADAS"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PUNT_SOCIALES_CIUDADAS]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_SOCIALES_CIUDADAS]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PUNT_C_NATURALES]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_C_NATURALES"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PUNT_C_NATURALES]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_C_NATURALES]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PUNT_LECTURA_CRITICA]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_LECTURA_CRITICA"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PUNT_LECTURA_CRITICA]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_LECTURA_CRITICA]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[INT_PUNT_GLOBAL]"
+                      cachedDataType="i4"
+                      cachedName="INT_PUNT_GLOBAL"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[INT_PUNT_GLOBAL]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[INT_PUNT_GLOBAL]" />
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DT_FECHA_CARGA]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DT_FECHA_CARGA"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DT_FECHA_ACTUALIZACION]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Derived Column.Outputs[Derived Column Output].Columns[DT_FECHA_CARGA]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SK_DIM_RESULTADOS]"
+                      dataType="i4"
+                      name="SK_DIM_RESULTADOS" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DESEMPENO_INGLES]"
+                      dataType="wstr"
+                      length="2"
+                      name="DESEMPENO_INGLES" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PUNT_INGLES]"
+                      dataType="i4"
+                      name="PUNT_INGLES" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PUNT_MATEMATICAS]"
+                      dataType="i4"
+                      name="PUNT_MATEMATICAS" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PUNT_SOCIALES_CIUDADAS]"
+                      dataType="i4"
+                      name="PUNT_SOCIALES_CIUDADAS" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PUNT_C_NATURALES]"
+                      dataType="i4"
+                      name="PUNT_C_NATURALES" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PUNT_LECTURA_CRITICA]"
+                      dataType="i4"
+                      name="PUNT_LECTURA_CRITICA" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[INT_PUNT_GLOBAL]"
+                      dataType="i4"
+                      name="INT_PUNT_GLOBAL" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DT_FECHA_ACTUALIZACION]"
+                      dataType="dbTimeStamp"
+                      name="DT_FECHA_ACTUALIZACION" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_DIM_RESULTADOS\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT
+   CAST('N/A' AS NVARCHAR(2)) AS DESEMPENO_INGLES,
+  -1  AS PUNT_INGLES,
+  -1  AS PUNT_MATEMATICAS,
+  -1  AS PUNT_SOCIALES_CIUDADAS,
+  -1  AS PUNT_C_NATURALES,
+  -1  AS PUNT_LECTURA_CRITICA,
+  -1  AS INT_PUNT_GLOBAL
+FROM dbo.RESULTADOS_SABER_11</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{00B4DFE2-2EED-4993-AD87-4CE661A08CD3}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[STAGE_UPTC]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[DESEMPENO_INGLES]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DESEMPENO_INGLES]"
+                      length="2"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[DESEMPENO_INGLES]"
+                      name="DESEMPENO_INGLES"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[PUNT_INGLES]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PUNT_INGLES]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[PUNT_INGLES]"
+                      name="PUNT_INGLES"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[PUNT_MATEMATICAS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PUNT_MATEMATICAS]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[PUNT_MATEMATICAS]"
+                      name="PUNT_MATEMATICAS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[PUNT_SOCIALES_CIUDADAS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PUNT_SOCIALES_CIUDADAS]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[PUNT_SOCIALES_CIUDADAS]"
+                      name="PUNT_SOCIALES_CIUDADAS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[PUNT_C_NATURALES]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PUNT_C_NATURALES]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[PUNT_C_NATURALES]"
+                      name="PUNT_C_NATURALES"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[PUNT_LECTURA_CRITICA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PUNT_LECTURA_CRITICA]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[PUNT_LECTURA_CRITICA]"
+                      name="PUNT_LECTURA_CRITICA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[INT_PUNT_GLOBAL]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[INT_PUNT_GLOBAL]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[INT_PUNT_GLOBAL]"
+                      name="INT_PUNT_GLOBAL"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DESEMPENO_INGLES]"
+                      dataType="wstr"
+                      length="2"
+                      name="DESEMPENO_INGLES" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PUNT_INGLES]"
+                      dataType="i4"
+                      name="PUNT_INGLES" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PUNT_MATEMATICAS]"
+                      dataType="i4"
+                      name="PUNT_MATEMATICAS" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PUNT_SOCIALES_CIUDADAS]"
+                      dataType="i4"
+                      name="PUNT_SOCIALES_CIUDADAS" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PUNT_C_NATURALES]"
+                      dataType="i4"
+                      name="PUNT_C_NATURALES" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PUNT_LECTURA_CRITICA]"
+                      dataType="i4"
+                      name="PUNT_LECTURA_CRITICA" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[INT_PUNT_GLOBAL]"
+                      dataType="i4"
+                      name="INT_PUNT_GLOBAL" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DESEMPENO_INGLES]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DESEMPENO_INGLES]"
+                      name="DESEMPENO_INGLES" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PUNT_INGLES]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PUNT_INGLES]"
+                      name="PUNT_INGLES" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PUNT_MATEMATICAS]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PUNT_MATEMATICAS]"
+                      name="PUNT_MATEMATICAS" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PUNT_SOCIALES_CIUDADAS]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PUNT_SOCIALES_CIUDADAS]"
+                      name="PUNT_SOCIALES_CIUDADAS" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PUNT_C_NATURALES]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PUNT_C_NATURALES]"
+                      name="PUNT_C_NATURALES" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PUNT_LECTURA_CRITICA]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PUNT_LECTURA_CRITICA]"
+                      name="PUNT_LECTURA_CRITICA" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[INT_PUNT_GLOBAL]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[INT_PUNT_GLOBAL]"
+                      name="INT_PUNT_GLOBAL" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_DIM_RESULTADOS\Row Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Row Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::COLEGIOS_REPETIDOS</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_DIM_RESULTADOS\Row Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_DIM_RESULTADOS\Row Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT_DIM_RESULTADOS\Row Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="TBL_RESULTADOS_SABER_11"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT STR_DESEMP_INGLES AS DESEMPENO_INGLES,
+ CASE
+ WHEN INT_PUNT_INGLES &gt;=0 AND INT_PUNT_INGLES &lt;=25 THEN 1
+ WHEN INT_PUNT_INGLES &gt;=26 AND INT_PUNT_INGLES &lt;=50 THEN 2
+ WHEN INT_PUNT_INGLES &gt;=51 AND INT_PUNT_INGLES &lt;=75 THEN 3
+ ELSE 4
+ END AS PUNT_INGLES,
+ CASE
+ WHEN INT_PUNT_MATEMATICAS &gt;=0 AND INT_PUNT_MATEMATICAS &lt;=25 THEN 1
+ WHEN INT_PUNT_MATEMATICAS &gt;=26 AND INT_PUNT_MATEMATICAS &lt;=50 THEN 2
+ WHEN INT_PUNT_MATEMATICAS &gt;=51 AND INT_PUNT_MATEMATICAS &lt;=75 THEN 3
+ ELSE 4
+ END AS PUNT_MATEMATICAS,
+ CASE
+ WHEN INT_PUNT_SOCIALES_CIUDADANAS &gt;=0 AND INT_PUNT_SOCIALES_CIUDADANAS &lt;=25 THEN 1
+ WHEN INT_PUNT_SOCIALES_CIUDADANAS &gt;=26 AND INT_PUNT_SOCIALES_CIUDADANAS &lt;=50 THEN 2
+ WHEN INT_PUNT_SOCIALES_CIUDADANAS &gt;=51 AND INT_PUNT_SOCIALES_CIUDADANAS &lt;=75 THEN 3
+ ELSE 4
+ END AS PUNT_SOCIALES_CIUDADAS,
+  CASE
+ WHEN INT_PUNT_C_NATURALES &gt;=0 AND INT_PUNT_C_NATURALES &lt;=25 THEN 1
+ WHEN INT_PUNT_C_NATURALES &gt;=26 AND INT_PUNT_C_NATURALES &lt;=50 THEN 2
+ WHEN INT_PUNT_C_NATURALES &gt;=51 AND INT_PUNT_C_NATURALES &lt;=75 THEN 3
+ ELSE 4
+ END AS PUNT_C_NATURALES,
+ CASE
+ WHEN INT_PUNT_LECTURA_CRITICA &gt;=0 AND INT_PUNT_LECTURA_CRITICA &lt;=25 THEN 1
+ WHEN INT_PUNT_LECTURA_CRITICA &gt;=26 AND INT_PUNT_LECTURA_CRITICA &lt;=50 THEN 2
+ WHEN INT_PUNT_LECTURA_CRITICA &gt;=51 AND INT_PUNT_LECTURA_CRITICA &lt;=75 THEN 3
+ ELSE 4
+ END AS PUNT_LECTURA_CRITICA,
+ INT_PUNT_GLOBAL AS INT_PUNT_GLOBAL
+ FROM DBO.RESULTADOS_SABER_11;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Connections[OleDbConnection]"
+                  connectionManagerID="{00B4DFE2-2EED-4993-AD87-4CE661A08CD3}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[STAGE_UPTC]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DESEMPENO_INGLES]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[DESEMPENO_INGLES]"
+                      length="2"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DESEMPENO_INGLES]"
+                      name="DESEMPENO_INGLES"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[PUNT_INGLES]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[PUNT_INGLES]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[PUNT_INGLES]"
+                      name="PUNT_INGLES"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[PUNT_MATEMATICAS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[PUNT_MATEMATICAS]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[PUNT_MATEMATICAS]"
+                      name="PUNT_MATEMATICAS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[PUNT_SOCIALES_CIUDADAS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[PUNT_SOCIALES_CIUDADAS]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[PUNT_SOCIALES_CIUDADAS]"
+                      name="PUNT_SOCIALES_CIUDADAS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[PUNT_LECTURA_CRITICA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[PUNT_LECTURA_CRITICA]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[PUNT_LECTURA_CRITICA]"
+                      name="PUNT_LECTURA_CRITICA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[INT_PUNT_GLOBAL]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[INT_PUNT_GLOBAL]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[INT_PUNT_GLOBAL]"
+                      name="INT_PUNT_GLOBAL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[PUNT_C_NATURALES]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[PUNT_C_NATURALES]"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[PUNT_C_NATURALES]"
+                      name="PUNT_C_NATURALES"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[DESEMPENO_INGLES]"
+                      dataType="wstr"
+                      length="2"
+                      name="DESEMPENO_INGLES" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[PUNT_INGLES]"
+                      dataType="i4"
+                      name="PUNT_INGLES" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[PUNT_MATEMATICAS]"
+                      dataType="i4"
+                      name="PUNT_MATEMATICAS" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[PUNT_SOCIALES_CIUDADAS]"
+                      dataType="i4"
+                      name="PUNT_SOCIALES_CIUDADAS" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[PUNT_LECTURA_CRITICA]"
+                      dataType="i4"
+                      name="PUNT_LECTURA_CRITICA" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[INT_PUNT_GLOBAL]"
+                      dataType="i4"
+                      name="INT_PUNT_GLOBAL" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].ExternalColumns[PUNT_C_NATURALES]"
+                      dataType="i4"
+                      name="PUNT_C_NATURALES" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[DESEMPENO_INGLES]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[DESEMPENO_INGLES]"
+                      name="DESEMPENO_INGLES" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[PUNT_INGLES]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[PUNT_INGLES]"
+                      name="PUNT_INGLES" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[PUNT_MATEMATICAS]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[PUNT_MATEMATICAS]"
+                      name="PUNT_MATEMATICAS" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[PUNT_SOCIALES_CIUDADAS]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[PUNT_SOCIALES_CIUDADAS]"
+                      name="PUNT_SOCIALES_CIUDADAS" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[PUNT_C_NATURALES]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[PUNT_C_NATURALES]"
+                      name="PUNT_C_NATURALES" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[PUNT_LECTURA_CRITICA]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[PUNT_LECTURA_CRITICA]"
+                      name="PUNT_LECTURA_CRITICA" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[INT_PUNT_GLOBAL]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[INT_PUNT_GLOBAL]"
+                      name="INT_PUNT_GLOBAL" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_DIM_RESULTADOS\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 1].Columns[DESEMPENO_INGLES]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="DESEMPENO_INGLES"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[DESEMPENO_INGLES]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[DESEMPENO_INGLES]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 1].Columns[PUNT_INGLES]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_INGLES"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[PUNT_INGLES]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_INGLES]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 1].Columns[PUNT_MATEMATICAS]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_MATEMATICAS"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[PUNT_MATEMATICAS]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_MATEMATICAS]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 1].Columns[PUNT_SOCIALES_CIUDADAS]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_SOCIALES_CIUDADAS"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[PUNT_SOCIALES_CIUDADAS]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_SOCIALES_CIUDADAS]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 1].Columns[PUNT_LECTURA_CRITICA]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_LECTURA_CRITICA"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[PUNT_LECTURA_CRITICA]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_LECTURA_CRITICA]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 1].Columns[INT_PUNT_GLOBAL]"
+                      cachedDataType="i4"
+                      cachedName="INT_PUNT_GLOBAL"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[INT_PUNT_GLOBAL]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[INT_PUNT_GLOBAL]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 1].Columns[PUNT_C_NATURALES]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_C_NATURALES"
+                      lineageId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output].Columns[PUNT_C_NATURALES]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_C_NATURALES]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 2].Columns[DESEMPENO_INGLES]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="DESEMPENO_INGLES"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[DESEMPENO_INGLES]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[DESEMPENO_INGLES]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 2].Columns[PUNT_INGLES]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_INGLES"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[PUNT_INGLES]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_INGLES]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 2].Columns[PUNT_MATEMATICAS]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_MATEMATICAS"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[PUNT_MATEMATICAS]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_MATEMATICAS]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 2].Columns[PUNT_SOCIALES_CIUDADAS]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_SOCIALES_CIUDADAS"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[PUNT_SOCIALES_CIUDADAS]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_SOCIALES_CIUDADAS]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 2].Columns[PUNT_C_NATURALES]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_C_NATURALES"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[PUNT_C_NATURALES]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_C_NATURALES]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 2].Columns[PUNT_LECTURA_CRITICA]"
+                      cachedDataType="i4"
+                      cachedName="PUNT_LECTURA_CRITICA"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[PUNT_LECTURA_CRITICA]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_LECTURA_CRITICA]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 2].Columns[INT_PUNT_GLOBAL]"
+                      cachedDataType="i4"
+                      cachedName="INT_PUNT_GLOBAL"
+                      lineageId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[INT_PUNT_GLOBAL]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[INT_PUNT_GLOBAL]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[DESEMPENO_INGLES]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[DESEMPENO_INGLES]"
+                      name="DESEMPENO_INGLES" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_INGLES]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_INGLES]"
+                      name="PUNT_INGLES" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_MATEMATICAS]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_MATEMATICAS]"
+                      name="PUNT_MATEMATICAS" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_SOCIALES_CIUDADAS]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_SOCIALES_CIUDADAS]"
+                      name="PUNT_SOCIALES_CIUDADAS" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_C_NATURALES]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_C_NATURALES]"
+                      name="PUNT_C_NATURALES" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_LECTURA_CRITICA]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[PUNT_LECTURA_CRITICA]"
+                      name="PUNT_LECTURA_CRITICA" />
+                    <outputColumn
+                      refId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[INT_PUNT_GLOBAL]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1].Columns[INT_PUNT_GLOBAL]"
+                      name="INT_PUNT_GLOBAL" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_DIM_RESULTADOS.Paths[Derived Column Output]"
+              endId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\DFT_DIM_RESULTADOS\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT_DIM_RESULTADOS.Paths[Lookup Match Output]"
+              endId="Package\DFT_DIM_RESULTADOS\Conditional Split.Inputs[Conditional Split Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_DIM_RESULTADOS.Paths[NUEVO]"
+              endId="Package\DFT_DIM_RESULTADOS\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="NUEVO"
+              startId="Package\DFT_DIM_RESULTADOS\Conditional Split.Outputs[NUEVO]" />
+            <path
+              refId="Package\DFT_DIM_RESULTADOS.Paths[OLE DB Source Output]"
+              endId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 1]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT_DIM_RESULTADOS.Paths[OLE DB Source Output1]"
+              endId="Package\DFT_DIM_RESULTADOS\Union All.Inputs[Union All Input 2]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_DIM_RESULTADOS\OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT_DIM_RESULTADOS.Paths[REPETIDO]"
+              endId="Package\DFT_DIM_RESULTADOS\Row Count.Inputs[Row Count Input 1]"
+              name="REPETIDO"
+              startId="Package\DFT_DIM_RESULTADOS\Conditional Split.Outputs[REPETIDO]" />
+            <path
+              refId="Package\DFT_DIM_RESULTADOS.Paths[Union All Output 1]"
+              endId="Package\DFT_DIM_RESULTADOS\Derived Column.Inputs[Derived Column Input]"
+              name="Union All Output 1"
+              startId="Package\DFT_DIM_RESULTADOS\Union All.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="192.8,41.6"
+          Id="Package\DFT_DIM_RESULTADOS"
+          TopLeft="134.071430760987,238.735297388683" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_DIM_RESULTADOS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="191.2,41.6"
+          Id="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS"
+          TopLeft="227.857146737527,258.505885967169" />
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\DFT_DIM_RESULTADOS\Union All"
+          TopLeft="265.816331057438,96.5714299258064" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\DFT_DIM_RESULTADOS\Derived Column"
+          TopLeft="245.714289898775,179.741178980171" />
+        <NodeLayout
+          Size="220.8,41.6"
+          Id="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11"
+          TopLeft="218.571429568894,5.64705838381626" />
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\DFT_DIM_RESULTADOS\Row Count"
+          TopLeft="475.000008089202,347.611768470256" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\DFT_DIM_RESULTADOS\OLE DB Destination"
+          TopLeft="245.555559737342,420.368633335272" />
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\DFT_DIM_RESULTADOS\OLE DB Source"
+          TopLeft="493.163273704643,96.8991610228397" />
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\DFT_DIM_RESULTADOS\Conditional Split"
+          TopLeft="248.571432804575,349.505887243409" />
+        <EdgeLayout
+          Id="Package\DFT_DIM_RESULTADOS.Paths[Union All Output 1]"
+          TopLeft="323.965310478106,138.171429925806">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41.5697490543648"
+              Start="0,0"
+              End="0,34.0697490543648">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.0697490543648" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-27.8251171875,11.4132924959324,55.650234375,11.2431640625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_DIM_RESULTADOS.Paths[REPETIDO]"
+          TopLeft="402.971432804575,369.358827856832">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="72.0285752846272,0"
+              Start="0,0"
+              End="64.5285752846272,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="64.5285752846272,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="8.61147514231358,5,47.305625,9.5732421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_DIM_RESULTADOS.Paths[OLE DB Source Output1]"
+          TopLeft="493.163273704643,117.535295474323">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-107.346942647205,0"
+              Start="0,0"
+              End="-99.8469426472048,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-99.8469426472048,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-65.0279439798524,5,30.2089453125,9.4462890625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_DIM_RESULTADOS.Paths[OLE DB Source Output]"
+          TopLeft="327.393880313166,47.2470583838163">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.3243715419901"
+              Start="0,0"
+              End="0,41.8243715419901">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.8243715419901" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-27.8251171875,15.2979279584951,55.650234375,11.228515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_DIM_RESULTADOS.Paths[NUEVO]"
+          TopLeft="328.263496270958,391.105887243409">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.2627460918634"
+              Start="0,0"
+              End="0,21.7627460918634">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.7627460918634" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.89173828125,5.0766855459317,97.7834765625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_DIM_RESULTADOS.Paths[Lookup Match Output]"
+          TopLeft="324.614289771051,300.105885967169">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.4000012762403"
+              Start="0,0"
+              End="0,41.9000012762403">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.9000012762403" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-80.51173828125,15.1453131381201,161.0234765625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_DIM_RESULTADOS.Paths[Derived Column Output]"
+          TopLeft="322.785718318151,221.341178980171">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.1647069869974"
+              Start="0,0"
+              End="0,29.6647069869974">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.6647069869974" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-27.8251171875,9.21077146224869,55.650234375,11.2431640625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_DIM_RESULTADOS\LKP_DIM_RESULTADOS">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_DIM_RESULTADOS\TBL_RESULTADOS_SABER_11">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_DIM_RESULTADOS\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_DIM_RESULTADOS\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

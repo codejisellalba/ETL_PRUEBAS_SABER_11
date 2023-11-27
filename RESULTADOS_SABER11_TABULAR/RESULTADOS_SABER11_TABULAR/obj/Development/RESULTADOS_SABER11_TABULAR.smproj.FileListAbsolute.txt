@@ -1,0 +1,7 @@
+C:\Users\pc\source\repos\RESULTADOS_SABER11_TABULAR\RESULTADOS_SABER11_TABULAR\bin\Model.asdatabase
+C:\Users\pc\source\repos\RESULTADOS_SABER11_TABULAR\RESULTADOS_SABER11_TABULAR\bin\Model.deploymenttargets
+C:\Users\pc\source\repos\RESULTADOS_SABER11_TABULAR\RESULTADOS_SABER11_TABULAR\bin\Model.deploymentoptions
+C:\Users\pc\source\repos\RESULTADOS_SABER11_TABULAR\RESULTADOS_SABER11_TABULAR\obj\Development\RESULTADOS_SABER11_TABULAR.smproj.CoreCompileInputs.cache
+C:\Users\pc\source\repos\RESULTADOS_SABER11_TABULAR\RESULTADOS_SABER11_TABULAR\obj\Development\Model.asdatabase
+C:\Users\pc\source\repos\RESULTADOS_SABER11_TABULAR\RESULTADOS_SABER11_TABULAR\obj\Development\Model.deploymentoptions
+C:\Users\pc\source\repos\RESULTADOS_SABER11_TABULAR\RESULTADOS_SABER11_TABULAR\obj\Development\Model.deploymenttargets
